@@ -24,49 +24,6 @@ public class multi_lobiye : MonoBehaviour
     PhotonNetwork.ConnectUsingSettings("1.0"); 
 		
     }
-	/*void Update(){
-		
-		Button btn = walkforw.GetComponent<Button>();
-		Button btn1= walkBack.GetComponent<Button>();
-		Button btn3 = attack1.GetComponent<Button>();
-		Button btn4 = attack2.GetComponent<Button>();
-		Button btn5 = attack3.GetComponent<Button>();
-		
-		PhotonView photonView1 = karakter1.GetComponent<PhotonView>();
-		PhotonView photonView2 = karakter2.GetComponent<PhotonView>();
-		
-		
-		if (photonView.IsMine) 
-        {
-			
-		btn.onClick.AddListener(walkForw_Click);
-	
-		btn1.onClick.AddListener(walkBack_Click);
-		
-		btn3.onClick.AddListener(attack1_Click);
-		
-		btn4.onClick.AddListener(attack2_Click);
-		
-		btn5.onClick.AddListener(attack3_Click);
-
-        }
-		if (photonView2.isMine==false) 
-        {
-			
-		btn.onClick.AddListener(walkForw_Click2);
-	
-		btn1.onClick.AddListener(walkBack_Click);
-		
-		btn3.onClick.AddListener(attack1_Click);
-		
-		btn4.onClick.AddListener(attack2_Click);
-		
-		btn5.onClick.AddListener(attack3_Click);
-
-        } 
-		
-
-	}*/
 	void OnGUI()
 	{
 		GUI.contentColor = Color.black; 
@@ -123,35 +80,35 @@ public class multi_lobiye : MonoBehaviour
 		btn3_2.onClick.AddListener(attack2_Click2);
 		btn4_2.onClick.AddListener(attack3_Click2);
 		
-			btn.gameObject.SetActive(false);
-			btn1.gameObject.SetActive(false);
-			btn3.gameObject.SetActive(false);
-			btn4.gameObject.SetActive(false);
-			btn5.gameObject.SetActive(false);	
+		btn.gameObject.SetActive(false);
+		btn1.gameObject.SetActive(false);
+		btn3.gameObject.SetActive(false);
+		btn4.gameObject.SetActive(false);
+		btn5.gameObject.SetActive(false);	
 
-			btn_2.gameObject.SetActive(false);
-			btn1_2.gameObject.SetActive(false);
-			btn2_2.gameObject.SetActive(false);
-			btn3_2.gameObject.SetActive(false);
-			btn4_2.gameObject.SetActive(false);	
+		btn_2.gameObject.SetActive(false);
+		btn1_2.gameObject.SetActive(false);
+		btn2_2.gameObject.SetActive(false);
+		btn3_2.gameObject.SetActive(false);
+		btn4_2.gameObject.SetActive(false);	
 		
 		
 		if(PhotonNetwork.player.ID==2){
-			btn_2.gameObject.SetActive(true);
+			
+            btn_2.gameObject.SetActive(true);
 			btn1_2.gameObject.SetActive(true);
 			btn2_2.gameObject.SetActive(true);
 			btn3_2.gameObject.SetActive(true);
-			btn4_2.gameObject.SetActive(true);	
-			
+			btn4_2.gameObject.SetActive(true);		
 		}
 		if(PhotonNetwork.player.ID==1){
-			btn.gameObject.SetActive(true);
+			
+            btn.gameObject.SetActive(true);
 			btn1.gameObject.SetActive(true);
 			btn3.gameObject.SetActive(true);
 			btn4.gameObject.SetActive(true);
 			btn5.gameObject.SetActive(true);	
 		}
-		
 		
 		if(PhotonNetwork.playerList.Length==1)
 		{
@@ -197,9 +154,7 @@ public class multi_lobiye : MonoBehaviour
 			player1_text.text="Health:"+(health1)+"\n\nEnergy:"+energy1;
 		}
 		else
-			Debug.Log("Gecemez");
-		
-		
+			Debug.Log("Gecemez");	
 	}
 	void walkBack_Click(){
 		Debug.Log ("walkback");
@@ -223,11 +178,8 @@ public class multi_lobiye : MonoBehaviour
 			anim.speed = +1.0f;
 			anim.Play("attack1");
 			/*anim2.Play("hurt");
-			anim2.speed = +1.0f;*/
-			
-			
-		}
-		
+			anim2.speed = +1.0f;*/		
+		}	
 	}
 	void attack2_Click(){
 		if((Mathf.Abs(spawn2.position.x-spawn1.position.x))>=1.0f){
@@ -260,9 +212,7 @@ public class multi_lobiye : MonoBehaviour
 			player2_text.text="Health:"+(health2)+"\n\nEnergy:"+energy2;
 		}
 		else
-			Debug.Log("Gecemez");
-		
-		
+			Debug.Log("Gecemez");		
 	}
 	void walkBack_Click2(){
 		Debug.Log ("walkback");
