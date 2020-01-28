@@ -11,8 +11,8 @@ public class multi_lobiye : MonoBehaviour
 	public Text player1_text,player2_text;
 	public int energy1,energy2,health1,health2;
     public Transform spawn1,spawn2;
-	public GameObject karakter1,karakter2,clone1,clone2;
-	public Button walkforw,walkBack,attack1,attack2,attack3;
+	public GameObject karakter1,karakter2,clone1,clone2,newB,newB2;
+	public Button walkforw,walkBack,attack1,attack2,attack3,example,walkForw_2,walkBack_2,attack1_2,attack2_2,attack3_2;
 	private Animator anim,anim2;
 	public float speed=1.0F;
 	private float startTime;
@@ -99,31 +99,58 @@ public class multi_lobiye : MonoBehaviour
 		player2_text = GameObject.Find("Player2_he").GetComponent<Text>();
 		player2_text.text="Health:"+health2+"\n\nEnergy:"+energy2;
 		
-		//if(photonView.IsMine==true){
 		Button btn = walkforw.GetComponent<Button>();
-		btn.onClick.AddListener(walkForw_Click);
-		
 		Button btn1= walkBack.GetComponent<Button>();
-		btn1.onClick.AddListener(walkBack_Click);
-		
 		Button btn3 = attack1.GetComponent<Button>();
-		btn3.onClick.AddListener(attack1_Click);
-		
 		Button btn4 = attack2.GetComponent<Button>();
-		btn4.onClick.AddListener(attack2_Click);
-		
 		Button btn5 = attack3.GetComponent<Button>();
-		btn5.onClick.AddListener(attack3_Click);
+		
+		Button btn_2  = walkForw_2.GetComponent<Button>();
+		Button btn1_2 = walkBack_2.GetComponent<Button>();
+		Button btn2_2 = attack1_2.GetComponent<Button>();
+		Button btn3_2 = attack2_2.GetComponent<Button>();
+		Button btn4_2 = attack3_2.GetComponent<Button>();
 		
 		btn.onClick.AddListener(walkForw_Click);
-	
 		btn1.onClick.AddListener(walkBack_Click);
-		
 		btn3.onClick.AddListener(attack1_Click);
-		
 		btn4.onClick.AddListener(attack2_Click);
-		
 		btn5.onClick.AddListener(attack3_Click);
+		
+		btn_2.onClick.AddListener(walkForw_Click2);
+		btn1_2.onClick.AddListener(walkBack_Click2);
+		btn2_2.onClick.AddListener(attack1_Click2);
+		btn3_2.onClick.AddListener(attack2_Click2);
+		btn4_2.onClick.AddListener(attack3_Click2);
+		
+			btn.gameObject.SetActive(false);
+			btn1.gameObject.SetActive(false);
+			btn3.gameObject.SetActive(false);
+			btn4.gameObject.SetActive(false);
+			btn5.gameObject.SetActive(false);	
+
+			btn_2.gameObject.SetActive(false);
+			btn1_2.gameObject.SetActive(false);
+			btn2_2.gameObject.SetActive(false);
+			btn3_2.gameObject.SetActive(false);
+			btn4_2.gameObject.SetActive(false);	
+		
+		
+		if(PhotonNetwork.player.ID==2){
+			btn_2.gameObject.SetActive(true);
+			btn1_2.gameObject.SetActive(true);
+			btn2_2.gameObject.SetActive(true);
+			btn3_2.gameObject.SetActive(true);
+			btn4_2.gameObject.SetActive(true);	
+			
+		}
+		if(PhotonNetwork.player.ID==1){
+			btn.gameObject.SetActive(true);
+			btn1.gameObject.SetActive(true);
+			btn3.gameObject.SetActive(true);
+			btn4.gameObject.SetActive(true);
+			btn5.gameObject.SetActive(true);	
+		}
 		
 		
 		if(PhotonNetwork.playerList.Length==1)
@@ -141,30 +168,18 @@ public class multi_lobiye : MonoBehaviour
 		  //karakter1.ToString();
 		//  PhotonNetwork.Instantiate(karakter1.ToString(),spawn1.position,spawn1.rotation,0) ;
 		//  karakter1.transform.position = spawn1.position ;
-		
-		
 		}
 		else if(PhotonNetwork.playerList.Length==2)
 		{
 		Debug.Log(PhotonNetwork.player.ID);
 		clone2= PhotonNetwork.Instantiate(karakter2.name,spawn2.position,spawn2.rotation,0);
-		anim2 = clone2.GetComponent<Animator>();
-		
-		
-		
-		
-				
-				
-		}	
-		
-		
-    
+		anim2 = clone2.GetComponent<Animator>();						
+		}		  
 	}
 	public void OnPhotonJoinRoomFailed(){
 		Debug.Log("Oda Bulunamadi");
 		i=i+1;
-		PhotonNetwork.JoinLobby();
-		
+		PhotonNetwork.JoinLobby();	
 	}
 	
 	void walkForw_Click(){
@@ -186,34 +201,15 @@ public class multi_lobiye : MonoBehaviour
 		
 		
 	}
-	void walkForw_Click2(){
-		Debug.Log ("walkforw");
-		
-		if((spawn2.position.x-(0.5f))>=(-5.5f) && (spawn2.position.x-(1.0f)) > spawn1.position.x && energy1>=10 ){
-			
-			anim2.speed = +2.0f;
-			anim2.Play("walkForw");	
-			
-			spawn2.position = spawn2.position - new Vector3(0.5f, 0.0f, 0.0f);
-			clone2.transform.position = spawn2.position;
-			
-			energy2=energy2-10;
-			player2_text.text="Health:"+(health2)+"\n\nEnergy:"+energy2;
-		}
-		else
-			Debug.Log("Gecemez");
-		
-		
-	}
 	void walkBack_Click(){
 		Debug.Log ("walkback");
 		
-		if((spawn1.position.x-(0.5f))>=(-5.5f) && energy1>=10 ){
+		if((spawn1.position.x+(0.5f))<=(+5.5f) && energy1>=10 ){
 			
 			anim.speed = +2.0f;
 			anim.Play("walkBack");
 			
-			spawn1.position =spawn1.position + new Vector3(-0.5f, 0.0f, 0.0f);
+			spawn1.position =spawn1.position + new Vector3(0.5f, 0.0f, 0.0f);
 		    clone1.transform.position = spawn1.position;
 			
 			energy1=energy1-10;
@@ -226,6 +222,9 @@ public class multi_lobiye : MonoBehaviour
 			Debug.Log ("ataack1");
 			anim.speed = +1.0f;
 			anim.Play("attack1");
+			/*anim2.Play("hurt");
+			anim2.speed = +1.0f;*/
+			
 			
 		}
 		
@@ -246,6 +245,64 @@ public class multi_lobiye : MonoBehaviour
 			anim.Play("attack3");
 		}
 	}
-	
-
+	void walkForw_Click2(){
+		Debug.Log ("walkforw");
+		
+		if((spawn2.position.x-(0.5f))>=(-5.5f) && (spawn2.position.x-(1.0f)) > spawn1.position.x && energy1>=10 ){
+			
+			anim2.speed = +2.0f;
+			anim2.Play("walkForw");	
+			
+			spawn2.position = spawn2.position - new Vector3(0.5f, 0.0f, 0.0f);
+			clone2.transform.position = spawn2.position;
+			
+			energy2=energy2-10;
+			player2_text.text="Health:"+(health2)+"\n\nEnergy:"+energy2;
+		}
+		else
+			Debug.Log("Gecemez");
+		
+		
+	}
+	void walkBack_Click2(){
+		Debug.Log ("walkback");
+		
+		if((spawn1.position.x-(0.5f))>=(-5.5f) && energy1>=10 ){
+			
+			anim2.speed = +2.0f;
+			anim2.Play("walkBack");
+			
+			spawn2.position =spawn2.position + new Vector3(+0.5f, 0.0f, 0.0f);
+		    clone2.transform.position = spawn2.position;
+			
+			energy2=energy2-10;
+			player2_text.text="Health:"+(health2)+"\n\nEnergy:"+energy2;
+		}
+	}
+	void attack1_Click2(){
+		if((Mathf.Abs(spawn2.position.x-spawn1.position.x))>=1.0f){
+			
+			Debug.Log ("ataack1");
+			anim2.speed = +1.0f;
+			anim2.Play("attack1");
+			
+		}
+		
+	}
+	void attack2_Click2(){
+		if((Mathf.Abs(spawn2.position.x-spawn1.position.x))>=1.0f){
+			
+			Debug.Log ("attack2");
+			anim2.speed = +1.0f;
+			anim2.Play("attack2");
+		}
+	}
+	void attack3_Click2(){
+		if((Mathf.Abs(spawn2.position.x-spawn1.position.x))>=1.0f){	
+			
+			Debug.Log ("attack3");
+			anim2.speed = +1.0f;
+			anim2.Play("attack3");
+		}
+	}
 }
