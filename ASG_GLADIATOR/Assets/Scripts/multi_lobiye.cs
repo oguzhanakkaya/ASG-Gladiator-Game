@@ -13,7 +13,7 @@ public class multi_lobiye : MonoBehaviour
     public Transform spawn1,spawn2;
 	public GameObject karakter1,karakter2,clone1,clone2;
 	public Button walkforw,walkBack,attack1,attack2,attack3,walkForw_2,walkBack_2,attack1_2,attack2_2,attack3_2,exit;
-	private Animator anim,anim2;
+	public Animator anim,anim2;
 	public float speed=1.0F;
 	private float startTime;
 	private int i=0;
