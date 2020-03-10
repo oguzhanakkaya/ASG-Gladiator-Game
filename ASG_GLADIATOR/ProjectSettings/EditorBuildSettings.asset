@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MultiOyun.unity
     guid: ef47fb80b6525084fa464dedf68b6e80
+  - enabled: 1
+    path: Assets/Scenes/Single_Game.unity
+    guid: 8e63dba6510233a4f99b91c0cdf62b3c
   m_configObjects: {}
