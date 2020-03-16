@@ -103,7 +103,6 @@ public class Single_Game : MonoBehaviour
             animation_player.Play("walkForw");
 
             player_transform.position = player_transform.position + new Vector3(0.5f, 0.0f, 0.0f);
-            
 
             player_energy = player_energy - 10;
             player_text.text = "Health:" + (player_health) + "/100" + "\n\nEnergy:" + player_energy + "/100";
@@ -208,7 +207,7 @@ public class Single_Game : MonoBehaviour
         if((Mathf.Abs(Main_Camera.transform.position.x-player.transform.position.x)<0.5 ) && (Mathf.Abs(Main_Camera.transform.position.y - player.transform.position.y) < 0.5))
         {
             Button_Active();
-            camera_control = true;
+            camera_control = false;
            
         }
 
