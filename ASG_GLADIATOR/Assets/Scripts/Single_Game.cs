@@ -16,6 +16,7 @@ public class Single_Game : MonoBehaviour
     public Button walkforw, walkBack, attack1, attack2, attack3, sleep,btn,btn1,btn3,btn4,btn5,btn6;
     public bool temp,camera_control=false;
     public float cameraZoom , cameraZoomDifference,cameraZoomSpeed,camera_x;
+    public Canvas canvass;
 
     void Start()
     {
@@ -33,6 +34,8 @@ public class Single_Game : MonoBehaviour
         checker = 0;
         
         print_textbox();
+
+        canvass.enabled = false;
 
     }
 
@@ -56,8 +59,8 @@ public class Single_Game : MonoBehaviour
         }
         else if(camera_control==true)
         {
-            
-            
+
+            canvass.enabled = true;
 
 
         }
@@ -209,7 +212,8 @@ public class Single_Game : MonoBehaviour
         if((Mathf.Abs(Main_Camera.transform.position.x-player.transform.position.x)<0.5 ) && (Mathf.Abs(Main_Camera.transform.position.y - player.transform.position.y) < 0.5))
         {
             Button_Active();
-            camera_control = false;
+            camera_control = true;
+            
            
         }
 

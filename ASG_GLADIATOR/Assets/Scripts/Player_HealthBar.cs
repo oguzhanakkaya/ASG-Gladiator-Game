@@ -19,8 +19,6 @@ public class Player_HealthBar : MonoBehaviour
     {
         SetPlayerEnergy();
         SetPlayerHealth();
-
-
     }
     public void SetPlayerEnergy()
     {
