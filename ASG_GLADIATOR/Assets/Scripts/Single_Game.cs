@@ -111,6 +111,8 @@ public class Single_Game : MonoBehaviour
         else
             Debug.Log("Gecemez");*/
     }
+
+
     public void walkBack_Click()
     {
         Debug.Log("walkback");
