@@ -60,16 +60,17 @@ public class Single_Game : MonoBehaviour
         else if(camera_control==true)
         {
 
-            canvass.enabled = true;
-
-
+            // canvass.enabled = true;
+            animation_computer.speed = +2.0f;
+            animation_computer.Play("walkForw");
+           // computer_transform.position= computer_transform.position - new Vector3(0.5f, 0.0f, 0.0f);
+            StartCoroutine("Wait");
         }
-       
-        
-
-        
-
-
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(3f);
+        camera_control = false;                         
     }
     public void Set_Button()
     {
@@ -100,8 +101,8 @@ public class Single_Game : MonoBehaviour
 
         /*  if ((spawn1.position.x + (0.5f)) <= (5.5f) && (spawn1.position.x + (1.0f)) < spawn2.position.x && energy1 >= 10)
           {*/
-       
             camera_normal();
+
             animation_player.speed = +2.0f;
             animation_player.Play("walkForw");
 
@@ -109,13 +110,13 @@ public class Single_Game : MonoBehaviour
 
             player_energy = player_energy - 10;
             player_text.text = "Health:" + (player_health) + "/100" + "\n\nEnergy:" + player_energy + "/100";
-        check = check + 1;
+            camera_control = true;
+            
+        //check = check + 1;
         /*}
         else
             Debug.Log("Gecemez");*/
     }
-
-
     public void walkBack_Click()
     {
         Debug.Log("walkback");
@@ -179,6 +180,9 @@ public class Single_Game : MonoBehaviour
     }
     public void camera_zoom()
     {
+
+        canvass.enabled = false;
+
         cameraZoomSpeed = 15f;
         cameraZoom = 4f;
 
@@ -212,9 +216,8 @@ public class Single_Game : MonoBehaviour
         if((Mathf.Abs(Main_Camera.transform.position.x-player.transform.position.x)<0.5 ) && (Mathf.Abs(Main_Camera.transform.position.y - player.transform.position.y) < 0.5))
         {
             Button_Active();
-            camera_control = true;
-            
-           
+            canvass.enabled = true;
+            // camera_control = true; 
         }
 
     } 
