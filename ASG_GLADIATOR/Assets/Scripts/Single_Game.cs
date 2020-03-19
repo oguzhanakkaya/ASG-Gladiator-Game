@@ -17,7 +17,8 @@ public class Single_Game : MonoBehaviour
     public bool temp,camera_control=false;
     public float cameraZoom , cameraZoomDifference,cameraZoomSpeed,camera_x, floattime,totaltime=15;
     public Canvas canvass;
-    public Image TimerImage;
+    //public Image TimerImage;
+    public CountdownTimer countdowntimer;
 
     void Start()
     {
@@ -31,7 +32,9 @@ public class Single_Game : MonoBehaviour
         Set_Button();
         Button_Deactive();
 
-        floattime = totaltime;
+        countdowntimer.SetTimerToFullTime();
+
+        
 
         check = 1;
         //checker = 0;
@@ -106,8 +109,7 @@ public class Single_Game : MonoBehaviour
         btn4 = GameObject.Find("attack_2").GetComponent<Button>();
         btn5 = GameObject.Find("attack_3").GetComponent<Button>();
         btn6 = GameObject.Find("sleep").GetComponent<Button>();
-        TimerImage= GameObject.Find("Timer").GetComponent<Image>();
-        TimerText= GameObject.Find("TimerText").GetComponent<Text>();
+      
 
         btn.onClick.AddListener(walkForw_Click);
         btn1.onClick.AddListener(walkBack_Click);
@@ -248,7 +250,8 @@ public class Single_Game : MonoBehaviour
         camera_x= (player.transform.position.x + computer.transform.position.x)/2.0f;
         Main_Camera.transform.position = new Vector3(camera_x,0.0f,-10.0f);
         Main_Camera.orthographicSize= Mathf.Abs(player.transform.position.x - computer.transform.position.x)*8/18;
-        floattime = totaltime;
+       
+        countdowntimer.SetTimerToFullTime();
         //camera_control = false;
 
 
@@ -309,7 +312,11 @@ public class Single_Game : MonoBehaviour
         btn4.gameObject.SetActive(false);
         btn5.gameObject.SetActive(false);
         btn6.gameObject.SetActive(false);
-        TimerImage.gameObject.SetActive(false);
+
+        countdowntimer.DeactiveTimer();
+
+
+
     }
     public void Button_Active()
     {
@@ -332,9 +339,10 @@ public class Single_Game : MonoBehaviour
         btn4.gameObject.SetActive(true);
         btn5.gameObject.SetActive(true);*/
         btn6.gameObject.SetActive(true);
-        TimerImage.gameObject.SetActive(true);
-
-        CountTimer();
+        countdowntimer.ActiveTimer();
+        
+        countdowntimer.CountTimer();
+        
       
     }
     public void print_textbox(){
@@ -350,7 +358,7 @@ public class Single_Game : MonoBehaviour
          computer_text = GameObject.Find("Computer_Text").GetComponent<Text>();
          computer_text.text = "Health:" + computer_health + "/100" + "\n\nEnergy:" + computer_energy + "/100";
      }
-    public void CountTimer()
+   /* public void CountTimer()
     {
 
         floattime -= Time.deltaTime;
@@ -358,7 +366,7 @@ public class Single_Game : MonoBehaviour
         TimerText.text = time.ToString();
         TimerImage.fillAmount = (1 / totaltime) * floattime;
     }
-
+    */
 
 
 
