@@ -9,14 +9,15 @@ public class Single_Game : MonoBehaviour
     public GameObject player, computer;
     public Animator animation_player, animation_computer;
     public int player_health, computer_health, player_energy, computer_energy;
-    public int check, checker;
-    public Text player_text, computer_text;
+    public int check,time;
+    public Text player_text, computer_text,TimerText;
     public Camera Main_Camera;
     public Transform computer_transform, player_transform, camera_transform, temp_transform;
     public Button walkforw, walkBack, attack1, attack2, attack3, sleep,btn,btn1,btn3,btn4,btn5,btn6;
     public bool temp,camera_control=false;
-    public float cameraZoom , cameraZoomDifference,cameraZoomSpeed,camera_x;
+    public float cameraZoom , cameraZoomDifference,cameraZoomSpeed,camera_x, floattime,totaltime=15;
     public Canvas canvass;
+    public Image TimerImage;
 
     void Start()
     {
@@ -30,8 +31,10 @@ public class Single_Game : MonoBehaviour
         Set_Button();
         Button_Deactive();
 
-        check = 0;
-        checker = 0;
+        floattime = totaltime;
+
+        check = 1;
+        //checker = 0;
         
         print_textbox();
 
@@ -53,7 +56,7 @@ public class Single_Game : MonoBehaviour
         
        /* if(temp==true)
         {*/
-        if(camera_control==false)
+        /*if(camera_control==false)
         {
             camera_zoom();
         }
@@ -65,12 +68,28 @@ public class Single_Game : MonoBehaviour
             animation_computer.Play("walkForw");
            // computer_transform.position= computer_transform.position - new Vector3(0.5f, 0.0f, 0.0f);
             StartCoroutine("Wait");
+        }*/
+
+        if(check==1)
+        {
+            camera_zoom();
         }
+        else if (check == 2)
+        {
+            camera_normal();
+            animation_computer.speed = +2.0f;
+            animation_computer.Play("walkForw");
+            StartCoroutine("Wait");   
+
+        }
+        Debug.Log(check);
+
     }
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(3f);
-        camera_control = false;                         
+       // camera_control = false;
+        check = 1;
     }
     public void Set_Button()
     {
@@ -87,6 +106,8 @@ public class Single_Game : MonoBehaviour
         btn4 = GameObject.Find("attack_2").GetComponent<Button>();
         btn5 = GameObject.Find("attack_3").GetComponent<Button>();
         btn6 = GameObject.Find("sleep").GetComponent<Button>();
+        TimerImage= GameObject.Find("Timer").GetComponent<Image>();
+        TimerText= GameObject.Find("TimerText").GetComponent<Text>();
 
         btn.onClick.AddListener(walkForw_Click);
         btn1.onClick.AddListener(walkBack_Click);
@@ -106,13 +127,13 @@ public class Single_Game : MonoBehaviour
             animation_player.speed = +2.0f;
             animation_player.Play("walkForw");
 
-            player_transform.position = player_transform.position + new Vector3(0.5f, 0.0f, 0.0f);
+            player_transform.position = player_transform.position + new Vector3(1.5f, 0.0f, 0.0f);
 
             player_energy = player_energy - 10;
             player_text.text = "Health:" + (player_health) + "/100" + "\n\nEnergy:" + player_energy + "/100";
             camera_control = true;
             
-        //check = check + 1;
+            check = check + 1;
         /*}
         else
             Debug.Log("Gecemez");*/
@@ -227,6 +248,7 @@ public class Single_Game : MonoBehaviour
         camera_x= (player.transform.position.x + computer.transform.position.x)/2.0f;
         Main_Camera.transform.position = new Vector3(camera_x,0.0f,-10.0f);
         Main_Camera.orthographicSize= Mathf.Abs(player.transform.position.x - computer.transform.position.x)*8/18;
+        floattime = totaltime;
         //camera_control = false;
 
 
@@ -287,6 +309,7 @@ public class Single_Game : MonoBehaviour
         btn4.gameObject.SetActive(false);
         btn5.gameObject.SetActive(false);
         btn6.gameObject.SetActive(false);
+        TimerImage.gameObject.SetActive(false);
     }
     public void Button_Active()
     {
@@ -309,6 +332,10 @@ public class Single_Game : MonoBehaviour
         btn4.gameObject.SetActive(true);
         btn5.gameObject.SetActive(true);*/
         btn6.gameObject.SetActive(true);
+        TimerImage.gameObject.SetActive(true);
+
+        CountTimer();
+      
     }
     public void print_textbox(){
 
@@ -323,6 +350,14 @@ public class Single_Game : MonoBehaviour
          computer_text = GameObject.Find("Computer_Text").GetComponent<Text>();
          computer_text.text = "Health:" + computer_health + "/100" + "\n\nEnergy:" + computer_energy + "/100";
      }
+    public void CountTimer()
+    {
+
+        floattime -= Time.deltaTime;
+        time = (int)floattime;
+        TimerText.text = time.ToString();
+        TimerImage.fillAmount = (1 / totaltime) * floattime;
+    }
 
 
 
