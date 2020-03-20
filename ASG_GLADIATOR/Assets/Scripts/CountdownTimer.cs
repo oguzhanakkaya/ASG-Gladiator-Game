@@ -9,12 +9,15 @@ public class CountdownTimer : MonoBehaviour
     public float floattime, totaltime = 15;
     public int  time;
     public Text  TimerText;
+    public AudioSource CountdownAudio;
 
 
     void Start()
     {
-        TimerImage = GameObject.Find("Timer").GetComponent<Image>();
-        TimerText = GameObject.Find("TimerText").GetComponent<Text>();
+        // TimerImage = GameObject.Find("Timer").GetComponent<Image>();
+        //  TimerText = GameObject.Find("TimerText").GetComponent<Text>();
+        CountdownAudio = GameObject.Find("CountdownMusic").GetComponent<AudioSource>();
+
     }
 
    
@@ -32,15 +35,26 @@ public class CountdownTimer : MonoBehaviour
         time = (int)floattime;
         TimerText.text = time.ToString();
         TimerImage.fillAmount = (1 / totaltime) * floattime;
+
+        Debug.Log(time);
+        if (time==6f)
+        {
+            Debug.Log("dddddd");
+            CountdownAudio.Play();
+
+        }
+
     }
     public void DeactiveTimer()
     {
+        
         TimerImage.gameObject.SetActive(false);
+        
     }
     public void ActiveTimer()
     {
         TimerImage.gameObject.SetActive(true);
     }
-
+    
 
 }

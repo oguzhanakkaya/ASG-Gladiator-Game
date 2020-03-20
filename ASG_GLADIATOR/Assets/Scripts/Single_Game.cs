@@ -10,14 +10,13 @@ public class Single_Game : MonoBehaviour
     public Animator animation_player, animation_computer;
     public int player_health, computer_health, player_energy, computer_energy;
     public int check,time;
-    public Text player_text, computer_text,TimerText;
+    public Text player_text, computer_text;
     public Camera Main_Camera;
     public Transform computer_transform, player_transform, camera_transform, temp_transform;
     public Button walkforw, walkBack, attack1, attack2, attack3, sleep,btn,btn1,btn3,btn4,btn5,btn6;
     public bool temp,camera_control=false;
-    public float cameraZoom , cameraZoomDifference,cameraZoomSpeed,camera_x, floattime,totaltime=15;
-    public Canvas canvass;
-    //public Image TimerImage;
+    public float cameraZoom , cameraZoomDifference,cameraZoomSpeed,camera_x;
+    public Canvas HealthAndEnergyCanvas;
     public CountdownTimer countdowntimer;
 
     void Start()
@@ -32,16 +31,15 @@ public class Single_Game : MonoBehaviour
         Set_Button();
         Button_Deactive();
 
+        HealthAndEnergyCanvas.enabled = false;
+
         countdowntimer.SetTimerToFullTime();
 
-        
-
         check = 1;
-        //checker = 0;
         
         print_textbox();
 
-        canvass.enabled = false;
+        
 
     }
 
@@ -76,6 +74,10 @@ public class Single_Game : MonoBehaviour
         if(check==1)
         {
             camera_zoom();
+            if(countdowntimer.time==0)
+            {
+                check += 1;
+            }
         }
         else if (check == 2)
         {
@@ -204,7 +206,7 @@ public class Single_Game : MonoBehaviour
     public void camera_zoom()
     {
 
-        canvass.enabled = false;
+        HealthAndEnergyCanvas.enabled = false;
 
         cameraZoomSpeed = 15f;
         cameraZoom = 4f;
@@ -239,7 +241,7 @@ public class Single_Game : MonoBehaviour
         if((Mathf.Abs(Main_Camera.transform.position.x-player.transform.position.x)<0.5 ) && (Mathf.Abs(Main_Camera.transform.position.y - player.transform.position.y) < 0.5))
         {
             Button_Active();
-            canvass.enabled = true;
+            HealthAndEnergyCanvas.enabled = true;
             // camera_control = true; 
         }
 
@@ -339,8 +341,9 @@ public class Single_Game : MonoBehaviour
         btn4.gameObject.SetActive(true);
         btn5.gameObject.SetActive(true);*/
         btn6.gameObject.SetActive(true);
+       
         countdowntimer.ActiveTimer();
-        
+
         countdowntimer.CountTimer();
         
       
@@ -358,16 +361,7 @@ public class Single_Game : MonoBehaviour
          computer_text = GameObject.Find("Computer_Text").GetComponent<Text>();
          computer_text.text = "Health:" + computer_health + "/100" + "\n\nEnergy:" + computer_energy + "/100";
      }
-   /* public void CountTimer()
-    {
-
-        floattime -= Time.deltaTime;
-        time = (int)floattime;
-        TimerText.text = time.ToString();
-        TimerImage.fillAmount = (1 / totaltime) * floattime;
-    }
-    */
-
+   
 
 
 
