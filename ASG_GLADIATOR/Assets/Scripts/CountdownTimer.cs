@@ -36,10 +36,9 @@ public class CountdownTimer : MonoBehaviour
         TimerText.text = time.ToString();
         TimerImage.fillAmount = (1 / totaltime) * floattime;
 
-        Debug.Log(time);
+       
         if (time==6f)
         {
-            Debug.Log("dddddd");
             CountdownAudio.Play();
 
         }
