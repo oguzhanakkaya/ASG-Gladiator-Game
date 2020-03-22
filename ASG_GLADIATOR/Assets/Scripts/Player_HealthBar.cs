@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class Player_HealthBar : MonoBehaviour
 {
     public Image PlayerEnergyBar,PlayerHealthBar;
-    public Single_Game single;
+    public PlayerMovement playerMovement;
     public float fill,player_energy,player_health;
     void Start()
     {
-        PlayerEnergyBar.fillAmount = single.player_energy / 100;
-        PlayerHealthBar.fillAmount = single.player_energy / 100;
+        PlayerEnergyBar.fillAmount = playerMovement.player_energy / 100;
+        PlayerHealthBar.fillAmount = playerMovement.player_energy / 100;
     }
 
     
@@ -22,13 +22,13 @@ public class Player_HealthBar : MonoBehaviour
     }
     public void SetPlayerEnergy()
     {
-        float player_energy = (float)single.player_energy;
+        float player_energy = (float)playerMovement.player_energy;
         fill = player_energy / 100;
         PlayerEnergyBar.fillAmount = fill;
     }
     public void SetPlayerHealth()
     {
-        float player_health = (float)single.player_health;
+        float player_health = (float)playerMovement.player_health;
         fill = player_health / 100;
         PlayerHealthBar.fillAmount = fill;
     }
