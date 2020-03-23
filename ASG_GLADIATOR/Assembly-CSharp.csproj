@@ -129,7 +129,8 @@
      <Compile Include="Assets\Scripts\Page_Load.cs" />
      <Compile Include="Assets\Scripts\Player_HealthBar.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\Single_Game.cs" />
+     <Compile Include="Assets\Scripts\SingleCharacterSelection.cs" />
+     <Compile Include="Assets\Scripts\SingleGameRoom.cs" />
      <None Include="Assets\Photon Unity Networking\link.xml" />
      <None Include="Assets\Resources\_TXT\Information.txt" />
      <None Include="Assets\Resources\_TXT\readme.txt" />
