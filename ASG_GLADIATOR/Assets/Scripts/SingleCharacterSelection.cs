@@ -10,6 +10,7 @@ public class SingleCharacterSelection : MonoBehaviour
     public Button NextButton, PreviousButton;
     public Text CharacterNameText;
     public GameObject Gladiator, Cavalier, Viking;
+    public int CharacterSelect=1;
     
 
     void Start()
@@ -37,45 +38,60 @@ public class SingleCharacterSelection : MonoBehaviour
     }
     public void NextCharacter()
     {
-        if(Gladiator.activeSelf==true)
+        switch(CharacterSelect)
         {
-            Gladiator.SetActive(false);
-            Cavalier.SetActive(true);
-            CharacterNameText.text = "Cavalier";
-        }
-        else if(Cavalier.activeSelf== true)    
-        {
-            Cavalier.SetActive(false);
-            Viking.SetActive(true);
-            CharacterNameText.text = "Viking";
-        }
-        else if (Viking.activeSelf == true)
-        {
-            Viking.SetActive(false);
-            Gladiator.SetActive(true);
-            CharacterNameText.text = "Gladiator";
-        }
+            case 1:
+                Gladiator.SetActive(false);
+                Cavalier.SetActive(true);
+                CharacterNameText.text = "Cavalier";
+                CharacterSelect++;
+                break;
 
+            case 2:
+                Cavalier.SetActive(false);
+                Viking.SetActive(true);
+                CharacterNameText.text = "Viking";
+                CharacterSelect++;
+                break;
+
+            case 3:
+                Viking.SetActive(false);
+                Gladiator.SetActive(true);
+                CharacterNameText.text = "Gladiator";
+                CharacterSelect=1;
+                break;
+
+            default:
+                break;
+        }
     }
     public void PreviousCharacter()
     {
-        if (Gladiator.activeSelf == true)
+        switch (CharacterSelect)
         {
-            Gladiator.SetActive(false);
-            Viking.SetActive(true);
-            CharacterNameText.text = "Viking";
-        }
-        else if (Cavalier.activeSelf == true)
-        {
-            Cavalier.SetActive(false);
-            Gladiator.SetActive(true);
-            CharacterNameText.text = "Gladiator";
-        }
-        else if (Viking.activeSelf == true)
-        {
-            Viking.SetActive(false);
-            Cavalier.SetActive(true);
-            CharacterNameText.text = "Cavalier";
+            case 1:
+                Gladiator.SetActive(false);
+                Viking.SetActive(true);
+                CharacterNameText.text = "Viking";
+                CharacterSelect=3;
+                break;
+
+            case 2:
+                Cavalier.SetActive(false);
+                Gladiator.SetActive(true);
+                CharacterNameText.text = "Gladiator";
+                CharacterSelect--;
+                break;
+
+            case 3:
+                Viking.SetActive(false);
+                Cavalier.SetActive(true);
+                CharacterNameText.text = "Cavalier";
+                CharacterSelect--;
+                break;
+
+            default:
+                break;
         }
     }
 }
