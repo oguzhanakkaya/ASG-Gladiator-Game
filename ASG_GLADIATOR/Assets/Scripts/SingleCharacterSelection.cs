@@ -10,7 +10,8 @@ public class SingleCharacterSelection : MonoBehaviour
     public Button NextButton, PreviousButton;
     public Text CharacterNameText;
     public GameObject Gladiator, Cavalier, Viking;
-    public int CharacterSelect=1;
+    public int CharacterSelect=1,chr;
+
     
 
     void Start()
@@ -19,11 +20,14 @@ public class SingleCharacterSelection : MonoBehaviour
         PreviousButton = GameObject.Find("PreviousCharacter").GetComponent<Button>();
         CharacterNameText= GameObject.Find("CharacterNameText").GetComponent<Text>();
 
-        //Gladiator = GameObject.Find("GameObject");
-        /*Cavalier = GameObject.Find("Cavalier");
-        Viking = GameObject.Find("Viking");*/
+        Gladiator = GameObject.Find("Gladiator");
+        Cavalier = GameObject.Find("Cavalier");
+        Viking = GameObject.Find("Viking");
 
         Gladiator.SetActive(true);
+        Cavalier.SetActive(false);
+        Viking.SetActive(false);
+
         CharacterNameText.text = "Gladiator";
 
         NextButton.onClick.AddListener(NextCharacter);
@@ -34,27 +38,27 @@ public class SingleCharacterSelection : MonoBehaviour
   
     void Update()
     {
-       
+        chr = CharacterSelect;
     }
     public void NextCharacter()
     {
         switch(CharacterSelect)
         {
-            case 1:
+            case 1: // case 1 = cavalier
                 Gladiator.SetActive(false);
                 Cavalier.SetActive(true);
                 CharacterNameText.text = "Cavalier";
                 CharacterSelect++;
                 break;
 
-            case 2:
+            case 2: // case 2 = Viking
                 Cavalier.SetActive(false);
                 Viking.SetActive(true);
                 CharacterNameText.text = "Viking";
                 CharacterSelect++;
                 break;
 
-            case 3:
+            case 3: // case 3 = gladiator
                 Viking.SetActive(false);
                 Gladiator.SetActive(true);
                 CharacterNameText.text = "Gladiator";
