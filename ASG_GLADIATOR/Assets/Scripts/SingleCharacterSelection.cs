@@ -10,7 +10,8 @@ public class SingleCharacterSelection : MonoBehaviour
     public Button NextButton, PreviousButton;
     public Text CharacterNameText;
     public GameObject Gladiator, Cavalier, Viking;
-    public int CharacterSelect=1,chr;
+    public int CharacterSelect;
+    public readonly string SelectedCharacter = "Selected Character";
 
     
 
@@ -28,6 +29,8 @@ public class SingleCharacterSelection : MonoBehaviour
         Cavalier.SetActive(false);
         Viking.SetActive(false);
 
+        CharacterSelect = 3;
+
         CharacterNameText.text = "Gladiator";
 
         NextButton.onClick.AddListener(NextCharacter);
@@ -38,13 +41,14 @@ public class SingleCharacterSelection : MonoBehaviour
   
     void Update()
     {
-        chr = CharacterSelect;
+        
     }
     public void NextCharacter()
     {
         switch(CharacterSelect)
         {
             case 1: // case 1 = cavalier
+                PlayerPrefs.SetInt(SelectedCharacter, 1);
                 Gladiator.SetActive(false);
                 Cavalier.SetActive(true);
                 CharacterNameText.text = "Cavalier";
@@ -52,6 +56,7 @@ public class SingleCharacterSelection : MonoBehaviour
                 break;
 
             case 2: // case 2 = Viking
+                PlayerPrefs.SetInt(SelectedCharacter, 2);
                 Cavalier.SetActive(false);
                 Viking.SetActive(true);
                 CharacterNameText.text = "Viking";
@@ -59,6 +64,7 @@ public class SingleCharacterSelection : MonoBehaviour
                 break;
 
             case 3: // case 3 = gladiator
+                PlayerPrefs.SetInt(SelectedCharacter, 3);
                 Viking.SetActive(false);
                 Gladiator.SetActive(true);
                 CharacterNameText.text = "Gladiator";
