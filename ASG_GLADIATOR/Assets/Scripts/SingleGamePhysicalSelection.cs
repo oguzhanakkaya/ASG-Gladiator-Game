@@ -47,11 +47,9 @@ public class SingleGamePhysicalSelection : MonoBehaviour
 
             Control = false;
         }
-       
-      
 
 
-    }
+}
     public void GetCharacter()
     {
         switch (CharacterNumber)

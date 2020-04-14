@@ -12,10 +12,12 @@ public class PlayerMovement : MonoBehaviour
     public Camera Main_Camera;
     public int check;
     public Transform computer_transform, player_transform, camera_transform, temp_transform;
+    public SingleGamePhysicalSelection Physical;
     void Start()
     {
         animation_player = player.GetComponent<Animator>();
         animation_computer = computer.GetComponent<Animator>();
+        
     }
 
     void Update()
@@ -31,13 +33,13 @@ public class PlayerMovement : MonoBehaviour
     public void WalkLeft()
     {
         Debug.Log("walkback");
-
+       
 
 
         animation_player.speed = +2.0f;
         animation_player.Play("walkBack");
 
-        player_transform.position = player_transform.position + new Vector3(1.5f, 0.0f, 0.0f);
+        player_transform.position = player_transform.position - new Vector3(1.0f, 0.0f, 0.0f);
 
         player_energy = player_energy - 10;
         player_text.text = "Health:" + (player_health) + "/100" + "\n\nEnergy:" + player_energy + "/100";
@@ -47,10 +49,10 @@ public class PlayerMovement : MonoBehaviour
     public void WalkRight()
     {
         Debug.Log("walkforw");
-
+        
         /*  if ((spawn1.position.x + (0.5f)) <= (5.5f) && (spawn1.position.x + (1.0f)) < spawn2.position.x && energy1 >= 10)
           {*/
-       // TurnControl = true;
+        // TurnControl = true;
         // camera_normal();
 
         animation_player.speed = +2.0f;
@@ -58,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         
-        player_transform.position = player_transform.position + new Vector3(-0.5f, 0.0f, 0.0f);
+        player_transform.position = player_transform.position + new Vector3(1.0f, 0.0f, 0.0f);
 
         player_energy = player_energy - 10;
         player_text.text = "Health:" + (player_health) + "/100" + "\n\nEnergy:" + player_energy + "/100";

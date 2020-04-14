@@ -28,9 +28,9 @@ public class SingleCharacterSelection : MonoBehaviour
         Gladiator.SetActive(true);
         Cavalier.SetActive(false);
         Viking.SetActive(false);
+       
 
-        CharacterSelect = 3;
-
+        CharacterSelect = 2;
         CharacterNameText.text = "Gladiator";
 
         NextButton.onClick.AddListener(NextCharacter);

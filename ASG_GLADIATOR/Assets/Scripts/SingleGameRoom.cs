@@ -10,11 +10,12 @@ public class SingleGameRoom : MonoBehaviour
     public int check,time;
     public Camera Main_Camera;
     public Button walkforw, walkBack, attack1, attack2, attack3, sleep,btn,btn1,btn3,btn4,btn5,btn6;
-    public bool temp,TurnControl;
+    public bool temp, TurnControl;
     public float cameraZoom , cameraZoomDifference,cameraZoomSpeed,camera_x;
     public Canvas HealthAndEnergyCanvas;
     public CountdownTimer countdowntimer;
     public PlayerMovement playerMovement;
+   
     void Start()
     {
 
@@ -34,20 +35,20 @@ public class SingleGameRoom : MonoBehaviour
 
         playerMovement.PrintTextbox();
 
+        
+
     }
 
    
     void Update()
     {
         playerMovement.SetTransforms();
-      
-        // print_textbox();
-        // game();
-        //camera_zoom();
-        //Button_Active();
+
         
-       /* if(temp==true)
-        {*/
+
+
+        /* if(temp==true)
+         {*/
         /*if(camera_control==false)
         {
             camera_zoom();
@@ -118,8 +119,8 @@ public class SingleGameRoom : MonoBehaviour
         btn6 = GameObject.Find("sleep").GetComponent<Button>();
       
 
-        btn.onClick.AddListener(playerMovement.WalkLeft);
-        btn1.onClick.AddListener(playerMovement.WalkRight);
+        btn.onClick.AddListener(playerMovement.WalkRight);
+        btn1.onClick.AddListener(playerMovement.WalkLeft);
         btn3.onClick.AddListener(playerMovement.QuickAttack);
         btn4.onClick.AddListener(playerMovement.NormalAttack);
         btn5.onClick.AddListener(playerMovement.HardAttack);
