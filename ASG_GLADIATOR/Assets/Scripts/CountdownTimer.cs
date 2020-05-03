@@ -17,6 +17,7 @@ public class CountdownTimer : MonoBehaviour
         // TimerImage = GameObject.Find("Timer").GetComponent<Image>();
         //  TimerText = GameObject.Find("TimerText").GetComponent<Text>();
         CountdownAudio = GameObject.Find("CountdownMusic").GetComponent<AudioSource>();
+        time = 15;
 
     }
 

@@ -262,7 +262,10 @@ PrefabInstance:
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6259030078304488615, guid: f009436500749e04b898572c327821de, type: 3}
+    - {fileID: 114782442135445960, guid: f009436500749e04b898572c327821de, type: 3}
+    - {fileID: 114027868533945696, guid: f009436500749e04b898572c327821de, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f009436500749e04b898572c327821de, type: 3}
 --- !u!1 &135852065
 GameObject:
@@ -1633,7 +1636,10 @@ PrefabInstance:
       propertyPath: instantiationId
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114782442135445960, guid: f009436500749e04b898572c327821de, type: 3}
+    - {fileID: 6259030078304488615, guid: f009436500749e04b898572c327821de, type: 3}
+    - {fileID: 114027868533945696, guid: f009436500749e04b898572c327821de, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f009436500749e04b898572c327821de, type: 3}
 --- !u!1 &939180978
 GameObject:
@@ -2636,7 +2642,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1727824623}
   computer: {fileID: 567554343}
-  check: 0
   time: 0
   Main_Camera: {fileID: 408403636}
   walkforw: {fileID: 1284125938}
@@ -2660,6 +2665,8 @@ MonoBehaviour:
   HealthAndEnergyCanvas: {fileID: 1294330922}
   countdowntimer: {fileID: 1905751329}
   playerMovement: {fileID: 1905751330}
+  WaitBool: 0
+  CameraTimer: 0
 --- !u!4 &1905751327
 Transform:
   m_ObjectHideFlags: 0
@@ -2739,6 +2746,7 @@ MonoBehaviour:
   camera_transform: {fileID: 325309754}
   temp_transform: {fileID: 1248594058}
   Physical: {fileID: 1905751331}
+  gameRoom: {fileID: 1905751326}
 --- !u!114 &1905751331
 MonoBehaviour:
   m_ObjectHideFlags: 0

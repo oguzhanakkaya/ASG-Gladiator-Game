@@ -7,7 +7,7 @@ using System.IO;
 public class SingleGameRoom : MonoBehaviour
 {
     public GameObject player, computer;
-    public int check,time;
+    public int time;
     public Camera Main_Camera;
     public Button walkforw, walkBack, attack1, attack2, attack3, sleep,btn,btn1,btn3,btn4,btn5,btn6;
     public bool temp, TurnControl;
@@ -15,6 +15,8 @@ public class SingleGameRoom : MonoBehaviour
     public Canvas HealthAndEnergyCanvas;
     public CountdownTimer countdowntimer;
     public PlayerMovement playerMovement;
+    public bool WaitBool;
+    public float CameraTimer;
    
     void Start()
     {
@@ -30,11 +32,15 @@ public class SingleGameRoom : MonoBehaviour
 
         countdowntimer.SetTimerToFullTime();
 
-        check = 1;
+       
+
         TurnControl = false;
+
+        WaitBool = false;
 
         playerMovement.PrintTextbox();
 
+        CameraTimer = 0f;
         
 
     }
@@ -44,69 +50,48 @@ public class SingleGameRoom : MonoBehaviour
     {
         playerMovement.SetTransforms();
 
+        Debug.Log(TurnControl);
         
 
 
-        /* if(temp==true)
-         {*/
-        /*if(camera_control==false)
+        if (TurnControl==false)
         {
-            camera_zoom();
-        }
-        else if(camera_control==true)
-        {
-
-            // canvass.enabled = true;
-            animation_computer.speed = +2.0f;
-            animation_computer.Play("walkForw");
-           // computer_transform.position= computer_transform.position - new Vector3(0.5f, 0.0f, 0.0f);
-            StartCoroutine("Wait");
-        }*/
-
-        /*if(check==1)
-        {
-            camera_zoom();
-            if(countdowntimer.time==0)
-            {
-                check += 1;
-            }
-        }
-        else if (check == 2)
-        {
-            camera_normal();
-            animation_computer.speed = +2.0f;
-            animation_computer.Play("walkForw");
-            StartCoroutine("Wait");   
-
-        }*/
-        Debug.Log(TurnControl);
-        if(TurnControl==false)
-        {
+            CameraTimer = 0;
             camera_zoom();
             if (countdowntimer.time == 0)
             {
                 TurnControl = true;
+                WaitBool = false;
+               
             }
-
+            
         }
-        else 
-        {
+        else if(TurnControl==true)
+        {      
             camera_normal();
-           // animation_computer.speed = +2.0f;
-            //animation_computer.Play("walkForw");
-           // TurnControl = false;
-            StartCoroutine("Wait");
-
+            if(CameraTimer < 4f)
+            {
+                CameraTimer += Time.deltaTime;
+            }           
+            if (CameraTimer >= 4f)
+            {
+                TurnControl = false;
+                WaitBool = true;
+               
+            }
+            /* if (WaitBool == false)
+            {
+                StartCoroutine(Wait());
+            }*/
         }
 
     }
-    IEnumerator Wait()
+   /* IEnumerator Wait()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5);
         TurnControl = false;
-
-        // check = 1;*/
-    }
+        WaitBool =true;
+    }*/
     public void Set_Button()
     {
        
@@ -146,45 +131,41 @@ public class SingleGameRoom : MonoBehaviour
             if (player.transform.position.x < Main_Camera.transform.position.x)
             {
                 Main_Camera.transform.position -= new Vector3(0.5f, 0.0f, 0.0f)*Time.deltaTime*cameraZoomSpeed;
-                if (player.transform.position.y < Main_Camera.transform.position.y)
-                {
-                    Main_Camera.transform.position -= new Vector3(0.0f, 0.5f, 0.0f)*Time.deltaTime*cameraZoomSpeed;
-
-                }
-               
+                     
             }
             if (player.transform.position.x > Main_Camera.transform.position.x)
             {
-                Main_Camera.transform.position -= new Vector3(0.5f, 0.0f, 0.0f) * Time.deltaTime * cameraZoomSpeed;
-                if (player.transform.position.y < Main_Camera.transform.position.y)
-                {
-                    Main_Camera.transform.position -= new Vector3(0.0f, 0.5f, 0.0f) * Time.deltaTime * cameraZoomSpeed;
-
-                }
-
+                Main_Camera.transform.position += new Vector3(0.5f, 0.0f, 0.0f) * Time.deltaTime * cameraZoomSpeed;
             }
         }
-  
+        if (player.transform.position.y < Main_Camera.transform.position.y)
+        {
+            Main_Camera.transform.position -= new Vector3(0.0f, 0.5f, 0.0f) * Time.deltaTime * cameraZoomSpeed;
+        }
+
         cameraZoomDifference = cameraZoom - Main_Camera.orthographicSize;
         Main_Camera.orthographicSize += cameraZoomDifference * cameraZoomSpeed * Time.deltaTime;
 
-        if((Mathf.Abs(Main_Camera.transform.position.x-player.transform.position.x)<0.5 ) && (Mathf.Abs(Main_Camera.transform.position.y - player.transform.position.y) < 0.5))
+        if((Mathf.Abs(Main_Camera.transform.position.x-player.transform.position.x)<1 ) && (Mathf.Abs(Main_Camera.transform.position.y - player.transform.position.y) < 2))
         {
             Button_Active();
             HealthAndEnergyCanvas.enabled = true;
-            // camera_control = true; 
         }
 
     } 
     public void camera_normal()
     {
         Button_Deactive();
-        camera_x= (player.transform.position.x + computer.transform.position.x)/2.0f;
-        Main_Camera.transform.position = new Vector3(camera_x,0.0f,-10.0f);
-        Main_Camera.orthographicSize= Mathf.Abs(player.transform.position.x - computer.transform.position.x)*8/18;
-       
+        /* camera_x= (player.transform.position.x + computer.transform.position.x)/2.0f;
+         Main_Camera.transform.position = new Vector3(camera_x,0.0f,-10.0f);
+         Main_Camera.orthographicSize= Mathf.Abs(player.transform.position.x - computer.transform.position.x)*8/18;*/
+
+        Main_Camera.transform.position = new Vector3(0.0f, 0.0f, -10.0f);
+        Main_Camera.orthographicSize = 8f;
+      
         countdowntimer.SetTimerToFullTime();
-        //camera_control = false;
+        Debug.Log("normal");
+        
 
     }
     public void Button_Deactive()
@@ -206,15 +187,15 @@ public class SingleGameRoom : MonoBehaviour
 
         btn.gameObject.SetActive(true);
         btn1.gameObject.SetActive(true);
-        if(Mathf.Abs(player.transform.position.x-computer.transform.position.x)<1.0f)
+        if(Mathf.Abs(player.transform.position.x-computer.transform.position.x)<3.0f)
         {
             btn3.gameObject.SetActive(true);
         }
-        if (Mathf.Abs(player.transform.position.x - computer.transform.position.x) < 1.0f)
+        if (Mathf.Abs(player.transform.position.x - computer.transform.position.x) < 3.0f)
         {
             btn4.gameObject.SetActive(true);
         }
-        if (Mathf.Abs(player.transform.position.x - computer.transform.position.x) < 1.0f)
+        if (Mathf.Abs(player.transform.position.x - computer.transform.position.x) < 3.0f)
         {
             btn5.gameObject.SetActive(true);
         }
@@ -231,6 +212,10 @@ public class SingleGameRoom : MonoBehaviour
     {
         countdowntimer.ActiveTimer();
         countdowntimer.CountTimer();
+    }
+    public void SetTurnControlToTrue()
+    {
+        TurnControl = true;
     }
 
 
