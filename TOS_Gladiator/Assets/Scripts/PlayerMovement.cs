@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject player, computer;
+    public GameObject computer;
     public Animator animation_player, animation_computer;
     public Text player_text, computer_text;
     public int player_health, computer_health, player_energy, computer_energy;
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public SingleGameRoom gameRoom;
     void Start()
     {
-        animation_player = player.GetComponent<Animator>();
+        animation_player = gameRoom.player.GetComponent<Animator>();
         animation_computer = computer.GetComponent<Animator>();
         
     }
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public void SetTransforms()
     {
         computer_transform.position = computer.transform.position;
-        player_transform.position = player.transform.position;
+    //    player_transform.position = gameRoom.player.transform.position;
         camera_transform.position = Main_Camera.transform.position;
     }
     public void WalkLeft()

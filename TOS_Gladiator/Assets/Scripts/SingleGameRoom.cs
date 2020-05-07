@@ -12,18 +12,41 @@ public class SingleGameRoom : MonoBehaviour
     public Button walkforw, walkBack, attack1, attack2, attack3, sleep,btn,btn1,btn3,btn4,btn5,btn6;
     public bool temp, TurnControl;
     public float cameraZoom , cameraZoomDifference,cameraZoomSpeed,camera_x;
-    public Canvas HealthAndEnergyCanvas;
+    public Canvas HealthAndEnergyCanvas,PlayerActionButtons;
     public CountdownTimer countdowntimer;
     public PlayerMovement playerMovement;
     public bool WaitBool;
     public float CameraTimer;
-   
+    public readonly string SelectedCharacter = "Selected Character";
+
     void Start()
     {
 
         Main_Camera.orthographic = true;
         Main_Camera.orthographicSize = 8.0f;
         Main_Camera.transform.GetComponent<Camera>();
+
+        
+
+        switch (PlayerPrefs.GetInt(SelectedCharacter, 0))
+        {
+            case 1:
+                player = Instantiate(Resources.Load("Knight3", typeof(GameObject))) as GameObject;
+
+                break;
+            case 2:
+                player = Instantiate(Resources.Load("Knight2", typeof(GameObject))) as GameObject;
+                break;
+            case 3:
+                player = Instantiate(Resources.Load("Knight1", typeof(GameObject))) as GameObject;
+                break;
+            default:
+                break;
+        }
+        player.transform.position = new Vector3(-9f, -6f, -5);
+        player.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+
+        PlayerActionButtons.transform.parent = player.transform;
 
         Set_Button();
         Button_Deactive();
@@ -41,7 +64,10 @@ public class SingleGameRoom : MonoBehaviour
         playerMovement.PrintTextbox();
 
         CameraTimer = 0f;
+
+      
         
+
 
     }
 
@@ -79,19 +105,11 @@ public class SingleGameRoom : MonoBehaviour
                 WaitBool = true;
                
             }
-            /* if (WaitBool == false)
-            {
-                StartCoroutine(Wait());
-            }*/
+            
         }
 
     }
-   /* IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(5);
-        TurnControl = false;
-        WaitBool =true;
-    }*/
+
     public void Set_Button()
     {
        
@@ -156,13 +174,30 @@ public class SingleGameRoom : MonoBehaviour
     public void camera_normal()
     {
         Button_Deactive();
-        /* camera_x= (player.transform.position.x + computer.transform.position.x)/2.0f;
-         Main_Camera.transform.position = new Vector3(camera_x,0.0f,-10.0f);
-         Main_Camera.orthographicSize= Mathf.Abs(player.transform.position.x - computer.transform.position.x)*8/18;*/
-
-        Main_Camera.transform.position = new Vector3(0.0f, 0.0f, -10.0f);
-        Main_Camera.orthographicSize = 8f;
-      
+        
+        if(Mathf.Abs(player.transform.position.x - computer.transform.position.x)<=11f)
+        {
+            if (Mathf.Abs(player.transform.position.x - computer.transform.position.x)>=4f)
+            {
+                camera_x = (player.transform.position.x + computer.transform.position.x) / 2.0f;
+                Main_Camera.transform.position = new Vector3(camera_x, -camera_x + 1, -10.0f);
+                Main_Camera.orthographicSize = Mathf.Abs(player.transform.position.x - computer.transform.position.x) * 8 / 18 + 1;
+            }
+            else
+            {
+                camera_x = (player.transform.position.x + computer.transform.position.x) / 2.0f;
+                Main_Camera.transform.position = new Vector3(camera_x, -camera_x + 2, -10.0f);
+                Main_Camera.orthographicSize =3f;
+            }
+            
+        }  
+        else
+        {
+            camera_x = (player.transform.position.x + computer.transform.position.x) / 2.0f;
+            Main_Camera.transform.position = new Vector3(camera_x, -camera_x, -10.0f);
+            Main_Camera.orthographicSize = Mathf.Abs(player.transform.position.x - computer.transform.position.x) * 8 / 18;
+        }
+         
         countdowntimer.SetTimerToFullTime();
         Debug.Log("normal");
         
@@ -178,9 +213,6 @@ public class SingleGameRoom : MonoBehaviour
         btn6.gameObject.SetActive(false);
 
         countdowntimer.DeactiveTimer();
-
-
-
     }
     public void Button_Active()
     {
