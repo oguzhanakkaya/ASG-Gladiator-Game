@@ -15,6 +15,12 @@ public class SingleGamePhysicalSelection : MonoBehaviour
     public Text MovementSpeedText, RemainingSkillsText, PowerText, StrengthText, StaminaText, SpecialSkillsText;
     public Button MovementSpeedButtonUp, MovementSpeedButtonDown, PowerButtonUp, PowerButtonDown;
     public Button StrengthButtonUp, StrengthButtonDown, StaminaButtonUp, StaminaButtonDown, SpecialSkillsButtonUp, SpecialSkillsButtonDown;
+    public readonly string MovementSpeedString = "Movement Speed";
+    public readonly string PowerString = " Power";
+    public readonly string StrengthString = "Strength String";
+    public readonly string StaminaString = " Stamina String";
+    public readonly string SpecialSkillsString = "Special Skills";
+    
 
 
     void Start()
@@ -107,53 +113,63 @@ public class SingleGamePhysicalSelection : MonoBehaviour
     public void MovementSpeedUp ()
     {
         MovementSpeed += 1;
+        PlayerPrefs.SetInt(MovementSpeedString, MovementSpeed);
         RemainingSkillsPoint -= 1;
     }
     public void MovementSpeedDown()
     {
         
         MovementSpeed -= 1;
+        PlayerPrefs.SetInt(MovementSpeedString, MovementSpeed);
         RemainingSkillsPoint += 1;
     }
     public void PowerUp()
     {
         Power += 1;
+        PlayerPrefs.SetInt(PowerString, Power);
         RemainingSkillsPoint -= 1;
     }
     public void PowerDown()
     {
         Power -= 1;
+        PlayerPrefs.SetInt(PowerString, Power);
         RemainingSkillsPoint += 1;
     }
     public void StrengthUp()
     {
         Strength += 1;
+        PlayerPrefs.SetInt(StrengthString, Strength);
         RemainingSkillsPoint -= 1;
     }
     public void StrengthDown()
     {
         Strength -= 1;
+        PlayerPrefs.SetInt(StrengthString, Strength);
         RemainingSkillsPoint += 1;
     }
     public void StaminaUp()
     {
         Stamina += 1;
+        PlayerPrefs.SetInt(StaminaString, Stamina);
         RemainingSkillsPoint -= 1;
     }
     public void StaminaDown()
     {
         Stamina -= 1;
+        PlayerPrefs.SetInt(StaminaString, Stamina);
         RemainingSkillsPoint += 1;
 
     }
     public void SpecialSkillsUp()
     {
         SpecialSkills += 1;
+        PlayerPrefs.SetInt(SpecialSkillsString, SpecialSkills);
         RemainingSkillsPoint -= 1;
     }
     public void SpecialSkillsDown()
     {
         SpecialSkills -= 1;
+        PlayerPrefs.SetInt(SpecialSkillsString, SpecialSkills);
         RemainingSkillsPoint += 1;
     }
     public void SetSkillsPoint()

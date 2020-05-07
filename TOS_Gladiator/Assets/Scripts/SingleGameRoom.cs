@@ -26,59 +26,35 @@ public class SingleGameRoom : MonoBehaviour
         Main_Camera.orthographicSize = 8.0f;
         Main_Camera.transform.GetComponent<Camera>();
 
+
+        SpawnPlayerCharacter();
         
 
-        switch (PlayerPrefs.GetInt(SelectedCharacter, 0))
-        {
-            case 1:
-                player = Instantiate(Resources.Load("Knight3", typeof(GameObject))) as GameObject;
-
-                break;
-            case 2:
-                player = Instantiate(Resources.Load("Knight2", typeof(GameObject))) as GameObject;
-                break;
-            case 3:
-                player = Instantiate(Resources.Load("Knight1", typeof(GameObject))) as GameObject;
-                break;
-            default:
-                break;
-        }
-        player.transform.position = new Vector3(-9f, -6f, -5);
-        player.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-
         PlayerActionButtons.transform.parent = player.transform;
+
+        playerMovement.SetTransforms();
 
         Set_Button();
         Button_Deactive();
 
         HealthAndEnergyCanvas.enabled = false;
 
-        countdowntimer.SetTimerToFullTime();
+        countdowntimer.SetTimerToFullTime();    
 
-       
-
-        TurnControl = false;
+        TurnControl = true;
 
         WaitBool = false;
 
         playerMovement.PrintTextbox();
 
         CameraTimer = 0f;
-
-      
-        
-
-
     }
 
    
     void Update()
     {
+
         playerMovement.SetTransforms();
-
-        Debug.Log(TurnControl);
-        
-
 
         if (TurnControl==false)
         {
@@ -199,9 +175,6 @@ public class SingleGameRoom : MonoBehaviour
         }
          
         countdowntimer.SetTimerToFullTime();
-        Debug.Log("normal");
-        
-
     }
     public void Button_Deactive()
     {
@@ -249,7 +222,26 @@ public class SingleGameRoom : MonoBehaviour
     {
         TurnControl = true;
     }
+    public void SpawnPlayerCharacter()
+    {
+        switch (PlayerPrefs.GetInt(SelectedCharacter, 0))
+        {
+            case 1:
+                player = Instantiate(Resources.Load("Knight3", typeof(GameObject))) as GameObject;
 
+                break;
+            case 2:
+                player = Instantiate(Resources.Load("Knight2", typeof(GameObject))) as GameObject;
+                break;
+            case 3:
+                player = Instantiate(Resources.Load("Knight1", typeof(GameObject))) as GameObject;
+                break;
+            default:
+                break;
+        }
+        player.transform.position = new Vector3(-9f, -6f, -5);
+        player.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+    }
 
 
 }

@@ -55,6 +55,4 @@ public class CountdownTimer : MonoBehaviour
     {
         TimerImage.gameObject.SetActive(true);
     }
-    
-
 }
