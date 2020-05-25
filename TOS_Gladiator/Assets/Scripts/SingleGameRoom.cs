@@ -55,6 +55,7 @@ public class SingleGameRoom : MonoBehaviour
     {
 
         playerMovement.SetTransforms();
+        RotationCheck();
 
         if (TurnControl==false)
         {
@@ -103,7 +104,7 @@ public class SingleGameRoom : MonoBehaviour
         btn3.onClick.AddListener(playerMovement.QuickAttack);
         btn4.onClick.AddListener(playerMovement.NormalAttack);
         btn5.onClick.AddListener(playerMovement.HardAttack);
-      //  btn6.onClick.AddListener(sleep_Click);
+        btn6.onClick.AddListener(playerMovement.Sleep);
     }
     public void game()
     {
@@ -192,7 +193,9 @@ public class SingleGameRoom : MonoBehaviour
 
         btn.gameObject.SetActive(true);
         btn1.gameObject.SetActive(true);
-        if(Mathf.Abs(player.transform.position.x-computer.transform.position.x)<3.0f)
+        btn6.gameObject.SetActive(true);
+
+        if (Mathf.Abs(player.transform.position.x-computer.transform.position.x)<3.0f)
         {
             btn3.gameObject.SetActive(true);
         }
@@ -204,10 +207,8 @@ public class SingleGameRoom : MonoBehaviour
         {
             btn5.gameObject.SetActive(true);
         }
-        /*btn3.gameObject.SetActive(true);
-        btn4.gameObject.SetActive(true);
-        btn5.gameObject.SetActive(true);*/
-        btn6.gameObject.SetActive(true);
+
+       
 
         ActiveAndCountTimer();
         
@@ -220,7 +221,7 @@ public class SingleGameRoom : MonoBehaviour
     }
     public void SetTurnControlToTrue()
     {
-        TurnControl = true;
+            TurnControl = true;     
     }
     public void SpawnPlayerCharacter()
     {
@@ -241,6 +242,21 @@ public class SingleGameRoom : MonoBehaviour
         }
         player.transform.position = new Vector3(-9f, -6f, -5);
         player.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+    }
+    public void RotationCheck()
+    {
+         if((player.transform.position.x- computer.transform.position.x)>0)
+         {
+             player.transform.rotation= Quaternion.Euler(new Vector3(0, -180, 0));
+            computer.transform.rotation= Quaternion.Euler(new Vector3(0, 0, 0));
+
+         }
+         else if(player.transform.position.x <= computer.transform.position.x)
+         {
+             player.transform.rotation= Quaternion.Euler(new Vector3(0, 0, 0));
+            computer.transform.rotation= Quaternion.Euler(new Vector3(0, -180, 0));
+
+         }        
     }
 
 

@@ -99,14 +99,14 @@ public class SingleCharacterSelection : MonoBehaviour
     public void SpawnViking()
     {
         Viking = Instantiate(Resources.Load("Knight2", typeof(GameObject))) as GameObject;
-        Viking.transform.position = new Vector3(0.5f, -0.8f, -1);
+        Viking.transform.position = new Vector3(0, -0.8f, -1);
         Viking.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         CharacterNameText.text = "Viking";
     }
     public void SpawnCavalier()
     {
         Cavalier = Instantiate(Resources.Load("Knight3", typeof(GameObject))) as GameObject;
-        Cavalier.transform.position = new Vector3(0f, 0f, -1);
+        Cavalier.transform.position = new Vector3(0f, -0.75f, -1);
         Cavalier.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         CharacterNameText.text = "Cavalier";
     }
