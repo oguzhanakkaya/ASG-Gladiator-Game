@@ -53,7 +53,6 @@ public class SingleGameRoom : MonoBehaviour
    
     void Update()
     {
-
         playerMovement.SetTransforms();
         RotationCheck();
 

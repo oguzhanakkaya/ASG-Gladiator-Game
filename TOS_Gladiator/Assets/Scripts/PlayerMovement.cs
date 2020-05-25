@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject computer;
+    public GameObject computer, MissShieldObject,MissShieldImage;
     public Animator animation_player, animation_computer;
-    public Text player_text, computer_text;
-    public int player_health, computer_health, player_energy, computer_energy;
+    public Text player_text, computer_text;   
     public Camera Main_Camera;
-    public int hit, miss;
     public Transform computer_transform, camera_transform, temp_transform;
     public SingleGameRoom gameRoom;
+    public int player_health, computer_health, player_energy, computer_energy, hit, miss;
+    public float MissTimer;
+
 
     public readonly string MovementSpeedString = "Movement Speed";
     public readonly string PowerString = " Power";
@@ -26,11 +27,15 @@ public class PlayerMovement : MonoBehaviour
         animation_computer = computer.GetComponent<Animator>();
 
         SetSkillPointsToCharacter();
+
+        MissShieldImage=GameObject.Find("MissShield");
+
+     
     }
 
     void Update()
     {
-
+ 
     }
     public void SetTransforms()
     {
@@ -140,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log(miss);
             Debug.Log("Miss");
+            Miss();
         }
         else
         {
@@ -194,6 +200,20 @@ public class PlayerMovement : MonoBehaviour
         Strength = PlayerPrefs.GetInt(StrengthString, 0);
         Stamina = PlayerPrefs.GetInt(StaminaString, 0);
         SpecialSkills = PlayerPrefs.GetInt(SpecialSkillsString, 0);
+    }
+    public void Miss()
+    {
+        Debug.Log(MissTimer);
+        MissTimer += Time.deltaTime;
+        
+        MissShieldObject= Instantiate(MissShieldImage, new Vector3(9, -4f, 0), Quaternion.identity) as GameObject;
+        MissShieldObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        MissShieldObject.transform.SetParent(computer.transform);
+
+      /*  if(MissTimer>=2f)
+        {*/
+            Destroy(MissShieldObject,1.0f);
+     //   }
     }
     
 }
