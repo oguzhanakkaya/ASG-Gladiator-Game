@@ -2268,7 +2268,7 @@ Transform:
   m_GameObject: {fileID: 1494135590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 3, z: 1}
+  m_LocalScale: {x: 3, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -2893,9 +2893,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 906daa374ff3c1c4185de08127e90857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temp: 1
+  TurnControl: 0
+  WaitBool: 0
+  cameraZoom: 12
+  cameraZoomDifference: 0
+  cameraZoomSpeed: 2
+  camera_x: 0
+  CameraTimer: 0
+  time: 0
   player: {fileID: 0}
   computer: {fileID: 567554343}
-  time: 0
   Main_Camera: {fileID: 408403636}
   walkforw: {fileID: 0}
   walkBack: {fileID: 0}
@@ -2909,18 +2917,10 @@ MonoBehaviour:
   btn4: {fileID: 0}
   btn5: {fileID: 0}
   btn6: {fileID: 0}
-  temp: 1
-  TurnControl: 0
-  cameraZoom: 12
-  cameraZoomDifference: 0
-  cameraZoomSpeed: 2
-  camera_x: 0
   HealthAndEnergyCanvas: {fileID: 1294330922}
   PlayerActionButtons: {fileID: 657777821}
   countdowntimer: {fileID: 1905751329}
   playerMovement: {fileID: 1905751330}
-  WaitBool: 0
-  CameraTimer: 0
 --- !u!4 &1905751327
 Transform:
   m_ObjectHideFlags: 0
@@ -3002,6 +3002,7 @@ MonoBehaviour:
   hit: 0
   miss: 0
   MissTimer: 0
+  CountdownTimerScript: {fileID: 1905751329}
   MovementSpeed: 0
   Power: 0
   Strength: 0

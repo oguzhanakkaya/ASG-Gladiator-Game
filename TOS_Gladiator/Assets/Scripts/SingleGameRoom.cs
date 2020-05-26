@@ -6,17 +6,15 @@ using System.IO;
 
 public class SingleGameRoom : MonoBehaviour
 {
-    public GameObject player, computer;
+    public bool temp, TurnControl, WaitBool;
+    public float cameraZoom, cameraZoomDifference, cameraZoomSpeed, camera_x, CameraTimer;
     public int time;
+    public GameObject player, computer;
     public Camera Main_Camera;
-    public Button walkforw, walkBack, attack1, attack2, attack3, sleep,btn,btn1,btn3,btn4,btn5,btn6;
-    public bool temp, TurnControl;
-    public float cameraZoom , cameraZoomDifference,cameraZoomSpeed,camera_x;
+    public Button walkforw, walkBack, attack1, attack2, attack3, sleep,btn,btn1,btn3,btn4,btn5,btn6;   
     public Canvas HealthAndEnergyCanvas,PlayerActionButtons;
     public CountdownTimer countdowntimer;
     public PlayerMovement playerMovement;
-    public bool WaitBool;
-    public float CameraTimer;
     public readonly string SelectedCharacter = "Selected Character";
 
     void Start()
@@ -34,8 +32,8 @@ public class SingleGameRoom : MonoBehaviour
 
         playerMovement.SetTransforms();
 
-        Set_Button();
-        Button_Deactive();
+        SetButton();
+        ButtonDeactive();
 
         HealthAndEnergyCanvas.enabled = false;
 
@@ -59,7 +57,7 @@ public class SingleGameRoom : MonoBehaviour
         if (TurnControl==false)
         {
             CameraTimer = 0;
-            camera_zoom();
+            CameraZoom();
             if (countdowntimer.time == 0)
             {
                 TurnControl = true;
@@ -70,7 +68,7 @@ public class SingleGameRoom : MonoBehaviour
         }
         else if(TurnControl==true)
         {      
-            camera_normal();
+            CameraNormal();
             if(CameraTimer < 4f)
             {
                 CameraTimer += Time.deltaTime;
@@ -85,13 +83,12 @@ public class SingleGameRoom : MonoBehaviour
         }
 
     }
-
-    public void Set_Button()
+    public void SetButton()
     {
        
 
-        btn = GameObject.Find("walk_forward").GetComponent<Button>();
-        btn1 = GameObject.Find("walk_back").GetComponent<Button>();
+        btn = GameObject.Find("walk_forward").GetComponent<Button>();  //Walk Right
+        btn1 = GameObject.Find("walk_back").GetComponent<Button>();    // Walk Left
         btn3 = GameObject.Find("attack_1").GetComponent<Button>();
         btn4 = GameObject.Find("attack_2").GetComponent<Button>();
         btn5 = GameObject.Find("attack_3").GetComponent<Button>();
@@ -105,14 +102,7 @@ public class SingleGameRoom : MonoBehaviour
         btn5.onClick.AddListener(playerMovement.HardAttack);
         btn6.onClick.AddListener(playerMovement.Sleep);
     }
-    public void game()
-    {
-        
-       
-        
-
-    }
-    public void camera_zoom()
+    public void CameraZoom()
     {
 
         HealthAndEnergyCanvas.enabled = false;
@@ -142,14 +132,14 @@ public class SingleGameRoom : MonoBehaviour
 
         if((Mathf.Abs(Main_Camera.transform.position.x-player.transform.position.x)<1 ) && (Mathf.Abs(Main_Camera.transform.position.y - player.transform.position.y) < 2))
         {
-            Button_Active();
+            ButtonActive();
             HealthAndEnergyCanvas.enabled = true;
         }
 
     } 
-    public void camera_normal()
+    public void CameraNormal()
     {
-        Button_Deactive();
+        ButtonDeactive();
         
         if(Mathf.Abs(player.transform.position.x - computer.transform.position.x)<=11f)
         {
@@ -162,7 +152,7 @@ public class SingleGameRoom : MonoBehaviour
             else
             {
                 camera_x = (player.transform.position.x + computer.transform.position.x) / 2.0f;
-                Main_Camera.transform.position = new Vector3(camera_x, -camera_x + 2, -10.0f);
+                Main_Camera.transform.position = new Vector3(camera_x, -camera_x + 3, -10.0f);
                 Main_Camera.orthographicSize =3f;
             }
             
@@ -176,7 +166,7 @@ public class SingleGameRoom : MonoBehaviour
          
         countdowntimer.SetTimerToFullTime();
     }
-    public void Button_Deactive()
+    public void ButtonDeactive()
     {
         btn.gameObject.SetActive(false);
         btn1.gameObject.SetActive(false);
@@ -187,13 +177,16 @@ public class SingleGameRoom : MonoBehaviour
 
         countdowntimer.DeactiveTimer();
     }
-    public void Button_Active()
+    public void ButtonActive()
     {
-
-        btn.gameObject.SetActive(true);
-        btn1.gameObject.SetActive(true);
-        btn6.gameObject.SetActive(true);
-
+        if (player.transform.position.x+playerMovement.MovementSpeed<=14)
+        {
+            btn.gameObject.SetActive(true);
+        }
+        if (player.transform.position.x - playerMovement.MovementSpeed >= -14)
+        {
+            btn1.gameObject.SetActive(true);
+        }
         if (Mathf.Abs(player.transform.position.x-computer.transform.position.x)<3.0f)
         {
             btn3.gameObject.SetActive(true);
@@ -207,7 +200,8 @@ public class SingleGameRoom : MonoBehaviour
             btn5.gameObject.SetActive(true);
         }
 
-       
+        btn6.gameObject.SetActive(true);
+
 
         ActiveAndCountTimer();
         

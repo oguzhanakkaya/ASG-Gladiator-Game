@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public SingleGameRoom gameRoom;
     public int player_health, computer_health, player_energy, computer_energy, hit, miss;
     public float MissTimer;
+    public CountdownTimer CountdownTimerScript;
 
 
     public readonly string MovementSpeedString = "Movement Speed";
@@ -55,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
 
         gameRoom.SetTurnControlToTrue();
 
+        CountdownTimerScript.CountdownAudio.Stop();
+
     }
     public void WalkRight()
     {
@@ -70,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
 
         gameRoom.SetTurnControlToTrue();
 
+        CountdownTimerScript.CountdownAudio.Stop();
+
     }
     public void QuickAttack()
     {
@@ -81,6 +86,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log(miss);
             Debug.Log("Miss");
+            animation_player.speed = +1.0f;
+            animation_player.Play("attack1");
+            animation_computer.Play("defans");
+            animation_computer.speed = +1.0f;
+
+            Miss();
         }
         else
         {
@@ -99,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
         computer_text.text = "Health:" + computer_health + "\n\nEnergy:" + computer_energy;
 
         gameRoom.SetTurnControlToTrue();
+        CountdownTimerScript.CountdownAudio.Stop();
     }
     public void NormalAttack()
     {
@@ -110,6 +122,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log(miss);
             Debug.Log("Miss");
+            animation_player.speed = +1.0f;
+            animation_player.Play("attack2");
+            animation_computer.Play("defans");
+            animation_computer.speed = +1.0f;
+
+            Miss();
         }
         else
         {
@@ -133,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
         computer_text.text = "Health:" + computer_health + "\n\nEnergy:" + computer_energy;
 
         gameRoom.SetTurnControlToTrue();
+        CountdownTimerScript.CountdownAudio.Stop();
 
     }
     public void HardAttack()
@@ -145,6 +164,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log(miss);
             Debug.Log("Miss");
+            animation_player.speed = +1.0f;
+            animation_player.Play("attack3");
+             animation_computer.Play("defans");
+            animation_computer.speed = +1.0f;
+
             Miss();
         }
         else
@@ -169,15 +193,14 @@ public class PlayerMovement : MonoBehaviour
 
 
         gameRoom.SetTurnControlToTrue();
+        CountdownTimerScript.CountdownAudio.Stop();
     }
     public void Sleep()
     {
         Debug.Log("sleep");
 
-        animation_player.speed = +1.0f;
-        animation_player.Play("attack3");
-
         gameRoom.SetTurnControlToTrue();
+        CountdownTimerScript.CountdownAudio.Stop();
     }
     public void PrintTextbox()
     {
@@ -210,10 +233,9 @@ public class PlayerMovement : MonoBehaviour
         MissShieldObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         MissShieldObject.transform.SetParent(computer.transform);
 
-      /*  if(MissTimer>=2f)
-        {*/
+   
             Destroy(MissShieldObject,1.0f);
-     //   }
+ 
     }
     
 }
