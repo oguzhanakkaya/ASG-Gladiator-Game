@@ -10,10 +10,10 @@ public class Player_HealthBar : MonoBehaviour
     public float fill,player_energy,player_health;
     void Start()
     {
-        PlayerEnergyBar.fillAmount = playerMovement.player_energy / 100;
-        PlayerHealthBar.fillAmount = playerMovement.player_energy / 100;
-        ComputerEnergyBar.fillAmount = playerMovement.computer_energy / 100;
-        ComputerHealthBar.fillAmount = playerMovement.computer_energy / 100;
+        PlayerEnergyBar.fillAmount = playerMovement.PlayerEnergy / 100;
+        PlayerHealthBar.fillAmount = playerMovement.PlayerHealth / 100;
+        ComputerEnergyBar.fillAmount = playerMovement.ComputerEnergy / 100;
+        ComputerHealthBar.fillAmount = playerMovement.ComputerHealth / 100;
     }
 
     
@@ -26,25 +26,25 @@ public class Player_HealthBar : MonoBehaviour
     }
     public void SetPlayerEnergy()
     {
-        float player_energy = (float)playerMovement.player_energy;
+        float player_energy = (float)playerMovement.PlayerEnergy;
         fill = player_energy / 100;
         PlayerEnergyBar.fillAmount = fill;
     }
     public void SetPlayerHealth()
     {
-        float player_health = (float)playerMovement.player_health;
+        float player_health = (float)playerMovement.PlayerHealth;
         fill = player_health / 100;
         PlayerHealthBar.fillAmount = fill;
     }
     public void SetComputerEnergy()
     {
-        float computer_energy = (float)playerMovement.computer_energy;
+        float computer_energy = (float)playerMovement.ComputerEnergy;
         fill = computer_energy / 100;
         ComputerEnergyBar.fillAmount = fill;
     }
     public void SetComputerHealth()
     {
-        float computer_health = (float)playerMovement.computer_health;
+        float computer_health = (float)playerMovement.ComputerHealth;
         fill = computer_health / 100;
         ComputerHealthBar.fillAmount = fill;
     }

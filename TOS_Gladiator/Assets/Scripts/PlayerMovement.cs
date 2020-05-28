@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Camera Main_Camera;
     public Transform computer_transform, camera_transform, temp_transform;
     public SingleGameRoom gameRoom;
-    public int player_health, computer_health, player_energy, computer_energy, hit, miss;
+    public int PlayerHealth, ComputerHealth, PlayerEnergy, ComputerEnergy, hit, miss;
     public float MissTimer;
     public CountdownTimer CountdownTimerScript;
 
@@ -51,8 +51,8 @@ public class PlayerMovement : MonoBehaviour
 
         gameRoom.player.transform.position -= new Vector3(1.0f, 0.0f, 0.0f) * MovementSpeed;
 
-        player_energy = player_energy - 10;
-        player_text.text = "Health:" + (player_health) + "\n\nEnergy:" + player_energy;
+        PlayerEnergy -= 10;
+        player_text.text = "Health:" + (PlayerHealth) + "\n\nEnergy:" + PlayerEnergy;
 
         gameRoom.SetTurnControlToComputer();
 
@@ -68,8 +68,8 @@ public class PlayerMovement : MonoBehaviour
 
         gameRoom.player.transform.position += new Vector3(1.0f, 0.0f, 0.0f) * MovementSpeed;
 
-        player_energy = player_energy - 10;
-        player_text.text = "Health:" + (player_health) + "\n\nEnergy:" + player_energy;
+        PlayerEnergy -= 10;
+        player_text.text = "Health:" + (PlayerHealth) + "\n\nEnergy:" + PlayerEnergy;
 
         gameRoom.SetTurnControlToComputer();
 
@@ -101,13 +101,13 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.Play("hurt");
             animation_computer.speed = +1.0f;
             int hit = Random.Range(1, 5) * Power;
-            player_energy -= 10;
+            PlayerEnergy -= 10;
             Debug.Log(hit);
-            computer_health -= hit;
+            ComputerHealth -= hit;
         }
 
-        player_text.text = "Health:" + player_health + "\n\nEnergy:" + player_energy;
-        computer_text.text = "Health:" + computer_health + "\n\nEnergy:" + computer_energy;
+        player_text.text = "Health:" + PlayerHealth + "\n\nEnergy:" + PlayerEnergy;
+        computer_text.text = "Health:" + ComputerHealth + "\n\nEnergy:" + ComputerEnergy;
 
         gameRoom.SetTurnControlToComputer();
         CountdownTimerScript.CountdownAudio.Stop();
@@ -140,15 +140,15 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.speed = +1.0f;
 
             int hit = Random.Range(5, 10) * Power;
-            player_energy -= 10;
-            computer_health -= hit;
+            PlayerEnergy -= 10;
+            ComputerHealth -= hit;
             Debug.Log(hit);
 
         }
 
 
-        player_text.text = "Health:" + player_health + "\n\nEnergy:" + player_energy;
-        computer_text.text = "Health:" + computer_health + "\n\nEnergy:" + computer_energy;
+        player_text.text = "Health:" + PlayerHealth + "\n\nEnergy:" + PlayerEnergy;
+        computer_text.text = "Health:" + ComputerHealth + "\n\nEnergy:" + ComputerEnergy;
 
         gameRoom.SetTurnControlToComputer();
         CountdownTimerScript.CountdownAudio.Stop();
@@ -180,15 +180,15 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.speed = +1.0f;
 
             int hit = Random.Range(10,15) * Power;
-            player_energy -= 10;
-            computer_health -= hit;
+            PlayerEnergy -= 10;
+            ComputerHealth -= hit;
             Debug.Log(hit);
 
         }
 
 
-        player_text.text = "Health:" + player_health + "\n\nEnergy:" + player_energy;
-        computer_text.text = "Health:" + computer_health + "\n\nEnergy:" + computer_energy;
+        player_text.text = "Health:" + PlayerHealth + "\n\nEnergy:" + PlayerEnergy;
+        computer_text.text = "Health:" + ComputerHealth + "\n\nEnergy:" + ComputerEnergy;
 
 
 
@@ -204,17 +204,17 @@ public class PlayerMovement : MonoBehaviour
     }
     public void PrintTextbox()
     {
-        player_health = 50 * PlayerPrefs.GetInt(StrengthString, 0);
-        player_energy = 50 * PlayerPrefs.GetInt(StaminaString, 0);
+        PlayerHealth = 50 * PlayerPrefs.GetInt(StrengthString, 0);
+        PlayerEnergy = 50 * PlayerPrefs.GetInt(StaminaString, 0);
 
-        computer_energy = 100;
-        computer_health = 100;
+        ComputerEnergy = 100;
+        ComputerHealth = 100;
 
         player_text = GameObject.Find("Player_Text").GetComponent<Text>();
-        player_text.text = "Health:" + player_health + "\n\nEnergy:" + player_energy;
+        player_text.text = "Health:" + PlayerHealth + "\n\nEnergy:" + PlayerEnergy;
 
         computer_text = GameObject.Find("Computer_Text").GetComponent<Text>();
-        computer_text.text = "Health:" + computer_health + "\n\nEnergy:" + computer_energy;
+        computer_text.text = "Health:" + ComputerHealth + "\n\nEnergy:" + ComputerEnergy;
     }
     public void SetSkillPointsToCharacter()
     {
@@ -239,7 +239,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void CheckDied()
     {
-        if(computer_health<=0)
+        if(ComputerHealth <= 0)
         {        
             
             Debug.Log("Comp Died");
@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.speed = +1.0f;
             gameRoom.GameFinished();
         }
-        if (player_health <= 0)
+        if (PlayerHealth <= 0)
         {
 
             Debug.Log("Comp Died");
