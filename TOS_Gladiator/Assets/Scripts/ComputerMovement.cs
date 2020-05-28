@@ -39,7 +39,7 @@ public class ComputerMovement : MonoBehaviour
         computer_energy = computer_energy - 10;
         computer_text.text = "Health:" + (computer_health) + "/100" + "\n\nEnergy:" + computer_energy + "/100";
         check = check + 1;
-        gameRoom.SetTurnControlToTrue();
+       // gameRoom.SetTurnControlToTrue();
 
     }
     public void WalkRight()
@@ -57,7 +57,7 @@ public class ComputerMovement : MonoBehaviour
         computer_energy = computer_energy - 10;
         computer_text.text = "Health:" + (computer_health) + "/100" + "\n\nEnergy:" + computer_energy + "/100";
         check = check + 1;
-        gameRoom.SetTurnControlToTrue();
+      //  gameRoom.SetTurnControlToTrue();
     }
     public void QuickAttack()
     {

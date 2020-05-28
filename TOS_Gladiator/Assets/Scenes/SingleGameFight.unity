@@ -2894,7 +2894,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   temp: 1
-  TurnControl: 0
   WaitBool: 0
   cameraZoom: 12
   cameraZoomDifference: 0
@@ -2902,6 +2901,7 @@ MonoBehaviour:
   camera_x: 0
   CameraTimer: 0
   time: 0
+  TurnControl: 0
   player: {fileID: 0}
   computer: {fileID: 567554343}
   Main_Camera: {fileID: 408403636}
@@ -2949,6 +2949,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerEnergyBar: {fileID: 1802354267}
   PlayerHealthBar: {fileID: 1822334183}
+  ComputerEnergyBar: {fileID: 362754000}
+  ComputerHealthBar: {fileID: 1615184313}
   playerMovement: {fileID: 1905751330}
   fill: 0
   player_energy: 0

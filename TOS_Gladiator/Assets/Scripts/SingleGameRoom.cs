@@ -6,9 +6,9 @@ using System.IO;
 
 public class SingleGameRoom : MonoBehaviour
 {
-    public bool temp, TurnControl, WaitBool;
+    public bool temp, WaitBool;
     public float cameraZoom, cameraZoomDifference, cameraZoomSpeed, camera_x, CameraTimer;
-    public int time;
+    public int time,TurnControl;
     public GameObject player, computer;
     public Camera Main_Camera;
     public Button walkforw, walkBack, attack1, attack2, attack3, sleep,btn,btn1,btn3,btn4,btn5,btn6;   
@@ -39,7 +39,7 @@ public class SingleGameRoom : MonoBehaviour
 
         countdowntimer.SetTimerToFullTime();    
 
-        TurnControl = true;
+        TurnControl = 2;
 
         WaitBool = false;
 
@@ -53,20 +53,21 @@ public class SingleGameRoom : MonoBehaviour
     {
         playerMovement.SetTransforms();
         RotationCheck();
+        playerMovement.CheckDied();
 
-        if (TurnControl==false)
+        if (TurnControl==1) // Turn for Player
         {
             CameraTimer = 0;
             CameraZoom();
             if (countdowntimer.time == 0)
             {
-                TurnControl = true;
+                TurnControl = 2;
                 WaitBool = false;
                
             }
             
         }
-        else if(TurnControl==true)
+        else if(TurnControl==2) // Turn for Computer
         {      
             CameraNormal();
             if(CameraTimer < 4f)
@@ -75,11 +76,26 @@ public class SingleGameRoom : MonoBehaviour
             }           
             if (CameraTimer >= 4f)
             {
-                TurnControl = false;
+                TurnControl = 1;
                 WaitBool = true;
                
             }
             
+        }
+        else if (TurnControl == 3) // Turn for Computer
+        {
+            CameraNormal();
+            if (CameraTimer < 4f)
+            {
+                CameraTimer += Time.deltaTime;
+            }
+            if (CameraTimer >= 4f)
+            {
+                TurnControl = 1;
+                WaitBool = true;
+
+            }
+
         }
 
     }
@@ -152,7 +168,7 @@ public class SingleGameRoom : MonoBehaviour
             else
             {
                 camera_x = (player.transform.position.x + computer.transform.position.x) / 2.0f;
-                Main_Camera.transform.position = new Vector3(camera_x, -camera_x + 3, -10.0f);
+                Main_Camera.transform.position = new Vector3(camera_x, -camera_x + 5, -10.0f);
                 Main_Camera.orthographicSize =3f;
             }
             
@@ -212,9 +228,13 @@ public class SingleGameRoom : MonoBehaviour
         countdowntimer.ActiveTimer();
         countdowntimer.CountTimer();
     }
-    public void SetTurnControlToTrue()
+    public void SetTurnControlToComputer()
     {
-            TurnControl = true;     
+            TurnControl = 2;     
+    }
+    public void GameFinished()
+    {
+        TurnControl = 3;
     }
     public void SpawnPlayerCharacter()
     {

@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         player_energy = player_energy - 10;
         player_text.text = "Health:" + (player_health) + "\n\nEnergy:" + player_energy;
 
-        gameRoom.SetTurnControlToTrue();
+        gameRoom.SetTurnControlToComputer();
 
         CountdownTimerScript.CountdownAudio.Stop();
 
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         player_energy = player_energy - 10;
         player_text.text = "Health:" + (player_health) + "\n\nEnergy:" + player_energy;
 
-        gameRoom.SetTurnControlToTrue();
+        gameRoom.SetTurnControlToComputer();
 
         CountdownTimerScript.CountdownAudio.Stop();
 
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
         miss = Random.Range(0, 100);
 
-        if (miss <= 10)
+        if (miss <= 5)
         {
             Debug.Log(miss);
             Debug.Log("Miss");
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
             animation_player.Play("attack1");        
             animation_computer.Play("hurt");
             animation_computer.speed = +1.0f;
-            int hit = Random.Range(1, 10) * Power;
+            int hit = Random.Range(1, 5) * Power;
             player_energy -= 10;
             Debug.Log(hit);
             computer_health -= hit;
@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         player_text.text = "Health:" + player_health + "\n\nEnergy:" + player_energy;
         computer_text.text = "Health:" + computer_health + "\n\nEnergy:" + computer_energy;
 
-        gameRoom.SetTurnControlToTrue();
+        gameRoom.SetTurnControlToComputer();
         CountdownTimerScript.CountdownAudio.Stop();
     }
     public void NormalAttack()
@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
         miss = Random.Range(0, 100);
 
-        if (miss <= 30)
+        if (miss <=20)
         {
             Debug.Log(miss);
             Debug.Log("Miss");
@@ -139,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.Play("hurt");
             animation_computer.speed = +1.0f;
 
-            int hit = Random.Range(10, 20) * Power;
+            int hit = Random.Range(5, 10) * Power;
             player_energy -= 10;
             computer_health -= hit;
             Debug.Log(hit);
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         player_text.text = "Health:" + player_health + "\n\nEnergy:" + player_energy;
         computer_text.text = "Health:" + computer_health + "\n\nEnergy:" + computer_energy;
 
-        gameRoom.SetTurnControlToTrue();
+        gameRoom.SetTurnControlToComputer();
         CountdownTimerScript.CountdownAudio.Stop();
 
     }
@@ -160,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
         miss = Random.Range(0, 100);
 
-        if (miss <= 50)
+        if (miss <= 45)
         {
             Debug.Log(miss);
             Debug.Log("Miss");
@@ -179,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.Play("hurt");
             animation_computer.speed = +1.0f;
 
-            int hit = Random.Range(20, 30) * Power;
+            int hit = Random.Range(10,15) * Power;
             player_energy -= 10;
             computer_health -= hit;
             Debug.Log(hit);
@@ -192,14 +192,14 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        gameRoom.SetTurnControlToTrue();
+        gameRoom.SetTurnControlToComputer();
         CountdownTimerScript.CountdownAudio.Stop();
     }
     public void Sleep()
     {
         Debug.Log("sleep");
 
-        gameRoom.SetTurnControlToTrue();
+        gameRoom.SetTurnControlToComputer();
         CountdownTimerScript.CountdownAudio.Stop();
     }
     public void PrintTextbox()
@@ -236,6 +236,25 @@ public class PlayerMovement : MonoBehaviour
    
             Destroy(MissShieldObject,1.0f);
  
+    }
+    public void CheckDied()
+    {
+        if(computer_health<=0)
+        {        
+            
+            Debug.Log("Comp Died");
+            animation_computer.Play("die");
+            animation_computer.speed = +1.0f;
+            gameRoom.GameFinished();
+        }
+        if (player_health <= 0)
+        {
+
+            Debug.Log("Comp Died");
+            animation_player.Play("die");
+            animation_player.speed = +1.0f;
+            gameRoom.GameFinished();
+        }
     }
     
 }
