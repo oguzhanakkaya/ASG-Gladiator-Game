@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject computer, MissShieldObject,MissShieldImage;
+    public GameObject computer, MissShieldObject,MissShieldImage,HitImage;
+    public Canvas HitCanvas;
     public Animator animation_player, animation_computer;
-    public Text player_text, computer_text;   
+    public Text player_text, computer_text,HitText;   
     public Camera Main_Camera;
     public Transform computer_transform, camera_transform, temp_transform;
     public SingleGameRoom gameRoom;
     public int PlayerHealth, ComputerHealth, PlayerEnergy, ComputerEnergy, hit, miss;
-    public float MissTimer;
+    public float HitTimer;
     public CountdownTimer CountdownTimerScript;
 
 
@@ -30,13 +31,23 @@ public class PlayerMovement : MonoBehaviour
         SetSkillPointsToCharacter();
 
         MissShieldImage=GameObject.Find("MissShield");
+        HitImage = GameObject.Find("HitImage");
+        HitText=GameObject.Find("HitImageText").GetComponent<Text>();
+        HitCanvas= GameObject.Find("HitCanvas").GetComponent<Canvas>();
 
-     
+        
+
+        HitCanvas.transform.SetParent(computer.transform);
+
+        HitImage.SetActive(false);
+
+
+
     }
 
     void Update()
     {
- 
+        HideImage();
     }
     public void SetTransforms()
     {
@@ -85,27 +96,32 @@ public class PlayerMovement : MonoBehaviour
         if (miss <= 5)
         {
             Debug.Log(miss);
-            Debug.Log("Miss");
+            
+
             animation_player.speed = +1.0f;
             animation_player.Play("attack1");
             animation_computer.Play("defans");
             animation_computer.speed = +1.0f;
 
-            Miss();
+            ShowMissImage();
+    
         }
         else
         {
 
             animation_player.speed = +1.0f;
-            animation_player.Play("attack1");        
+            animation_player.Play("attack1");
             animation_computer.Play("hurt");
             animation_computer.speed = +1.0f;
+
             int hit = Random.Range(1, 5) * Power;
             PlayerEnergy -= 10;
             Debug.Log(hit);
             ComputerHealth -= hit;
+            ShowHitImage();
         }
 
+      
         player_text.text = "Health:" + PlayerHealth + "\n\nEnergy:" + PlayerEnergy;
         computer_text.text = "Health:" + ComputerHealth + "\n\nEnergy:" + ComputerEnergy;
 
@@ -127,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.Play("defans");
             animation_computer.speed = +1.0f;
 
-            Miss();
+             ShowMissImage();
         }
         else
         {
@@ -142,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
             int hit = Random.Range(5, 10) * Power;
             PlayerEnergy -= 10;
             ComputerHealth -= hit;
-            Debug.Log(hit);
+            ShowHitImage();
 
         }
 
@@ -169,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
              animation_computer.Play("defans");
             animation_computer.speed = +1.0f;
 
-            Miss();
+                ShowMissImage();
         }
         else
         {
@@ -182,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
             int hit = Random.Range(10,15) * Power;
             PlayerEnergy -= 10;
             ComputerHealth -= hit;
-            Debug.Log(hit);
+            ShowHitImage();
 
         }
 
@@ -224,18 +240,34 @@ public class PlayerMovement : MonoBehaviour
         Stamina = PlayerPrefs.GetInt(StaminaString, 0);
         SpecialSkills = PlayerPrefs.GetInt(SpecialSkillsString, 0);
     }
-    public void Miss()
-    {
-        Debug.Log(MissTimer);
-        MissTimer += Time.deltaTime;
-        
+    public void ShowMissImage()
+    {       
         MissShieldObject= Instantiate(MissShieldImage, new Vector3(9, -4f, 0), Quaternion.identity) as GameObject;
         MissShieldObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         MissShieldObject.transform.SetParent(computer.transform);
-
-   
-            Destroy(MissShieldObject,1.0f);
+        
+        Destroy(MissShieldObject,1.0f);
  
+    }
+    public void ShowHitImage()
+    {
+        HitImage.SetActive(true);
+        HitImage.transform.position = new Vector3(9, -4.5f, 0);
+
+        HitText.text = "aa";  
+
+    }
+    public void HideImage()
+    {
+        if (HitImage.activeSelf == true)
+        {
+            HitTimer += Time.deltaTime;
+            if (HitTimer >= 2)
+            {
+                HitImage.SetActive(false);
+                HitTimer = 0;
+            }
+        }
     }
     public void CheckDied()
     {

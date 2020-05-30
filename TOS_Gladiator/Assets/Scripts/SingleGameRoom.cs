@@ -168,7 +168,7 @@ public class SingleGameRoom : MonoBehaviour
             else
             {
                 camera_x = (player.transform.position.x + computer.transform.position.x) / 2.0f;
-                Main_Camera.transform.position = new Vector3(camera_x, -camera_x + 5, -10.0f);
+                Main_Camera.transform.position = new Vector3(camera_x, -camera_x + 3, -10.0f);
                 Main_Camera.orthographicSize =3f;
             }
             

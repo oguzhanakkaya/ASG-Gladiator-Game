@@ -15,6 +15,7 @@ public class SingleGamePhysicalSelection : MonoBehaviour
     public Text MovementSpeedText, RemainingSkillsText, PowerText, StrengthText, StaminaText, SpecialSkillsText;
     public Button MovementSpeedButtonUp, MovementSpeedButtonDown, PowerButtonUp, PowerButtonDown;
     public Button StrengthButtonUp, StrengthButtonDown, StaminaButtonUp, StaminaButtonDown, SpecialSkillsButtonUp, SpecialSkillsButtonDown;
+
     public readonly string MovementSpeedString = "Movement Speed";
     public readonly string PowerString = " Power";
     public readonly string StrengthString = "Strength String";
