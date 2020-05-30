@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject computer, MissShieldObject,MissShieldImage,HitImage;
+    public GameObject computer; //MissShieldObject,MissShieldImage,HitImage;
     public Canvas HitCanvas;
     public Animator animation_player, animation_computer;
     public Text player_text, computer_text,HitText;   
@@ -30,24 +30,18 @@ public class PlayerMovement : MonoBehaviour
 
         SetSkillPointsToCharacter();
 
-        MissShieldImage=GameObject.Find("MissShield");
-        HitImage = GameObject.Find("HitImage");
+        //MissShieldImage=GameObject.Find("MissShield");
+      /*  HitImage = GameObject.Find("HitImage");
         HitText=GameObject.Find("HitImageText").GetComponent<Text>();
-        HitCanvas= GameObject.Find("HitCanvas").GetComponent<Canvas>();
+        HitCanvas= GameObject.Find("HitCanvas").GetComponent<Canvas>();*/
 
-        
-
-        HitCanvas.transform.SetParent(computer.transform);
-
-        HitImage.SetActive(false);
-
-
+     //   HitImage.SetActive(false);
 
     }
 
     void Update()
     {
-        HideImage();
+        //HideImage();
     }
     public void SetTransforms()
     {
@@ -103,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.Play("defans");
             animation_computer.speed = +1.0f;
 
-            ShowMissImage();
+           // ShowMissImage();
     
         }
         else
@@ -118,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerEnergy -= 10;
             Debug.Log(hit);
             ComputerHealth -= hit;
-            ShowHitImage();
+            //  ShowHitImage();
         }
 
       
@@ -143,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.Play("defans");
             animation_computer.speed = +1.0f;
 
-             ShowMissImage();
+            // ShowMissImage();
         }
         else
         {
@@ -158,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
             int hit = Random.Range(5, 10) * Power;
             PlayerEnergy -= 10;
             ComputerHealth -= hit;
-            ShowHitImage();
+            //  ShowHitImage();
 
         }
 
@@ -185,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
              animation_computer.Play("defans");
             animation_computer.speed = +1.0f;
 
-                ShowMissImage();
+               // ShowMissImage();
         }
         else
         {
@@ -198,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
             int hit = Random.Range(10,15) * Power;
             PlayerEnergy -= 10;
             ComputerHealth -= hit;
-            ShowHitImage();
+            //  ShowHitImage();
 
         }
 
@@ -240,7 +234,7 @@ public class PlayerMovement : MonoBehaviour
         Stamina = PlayerPrefs.GetInt(StaminaString, 0);
         SpecialSkills = PlayerPrefs.GetInt(SpecialSkillsString, 0);
     }
-    public void ShowMissImage()
+  /*  public void ShowMissImage()
     {       
         MissShieldObject= Instantiate(MissShieldImage, new Vector3(9, -4f, 0), Quaternion.identity) as GameObject;
         MissShieldObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
@@ -256,8 +250,8 @@ public class PlayerMovement : MonoBehaviour
 
         HitText.text = "aa";  
 
-    }
-    public void HideImage()
+    }*/
+  /*  public void HideImage()
     {
         if (HitImage.activeSelf == true)
         {
@@ -268,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
                 HitTimer = 0;
             }
         }
-    }
+    }*/
     public void CheckDied()
     {
         if(ComputerHealth <= 0)

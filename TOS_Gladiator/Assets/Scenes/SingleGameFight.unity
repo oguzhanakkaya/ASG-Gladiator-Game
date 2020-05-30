@@ -3034,6 +3034,7 @@ GameObject:
   - component: {fileID: 1905751327}
   - component: {fileID: 1905751326}
   - component: {fileID: 1905751330}
+  - component: {fileID: 1905751331}
   - component: {fileID: 1905751328}
   - component: {fileID: 1905751329}
   m_Layer: 0
@@ -3083,6 +3084,7 @@ MonoBehaviour:
   PlayerActionButtons: {fileID: 657777821}
   countdowntimer: {fileID: 1905751329}
   playerMovement: {fileID: 1905751330}
+  computerMovement: {fileID: 1905751331}
 --- !u!4 &1905751327
 Transform:
   m_ObjectHideFlags: 0
@@ -3148,9 +3150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computer: {fileID: 567554343}
-  MissShieldObject: {fileID: 0}
-  MissShieldImage: {fileID: 0}
-  HitImage: {fileID: 0}
   HitCanvas: {fileID: 0}
   animation_player: {fileID: 0}
   animation_computer: {fileID: 0}
@@ -3175,6 +3174,50 @@ MonoBehaviour:
   Strength: 0
   Stamina: 0
   SpecialSkills: 0
+--- !u!114 &1905751331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905751325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8af93be1788c4ea44bc64c77780a1b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  computer: {fileID: 567554343}
+  MissShieldObject: {fileID: 0}
+  MissShieldImage: {fileID: 542380390}
+  HitImage: {fileID: 553349142}
+  player: {fileID: 0}
+  HitCanvas: {fileID: 2060185020}
+  player_text: {fileID: 652464460}
+  computer_text: {fileID: 750859227}
+  HitText: {fileID: 1689667046}
+  Main_Camera: {fileID: 408403636}
+  computer_transform: {fileID: 567554350}
+  camera_transform: {fileID: 325309754}
+  temp_transform: {fileID: 1248594058}
+  gameRoommm: {fileID: 1905751326}
+  hit: 0
+  miss: 0
+  playerMovement: {fileID: 1905751330}
+  HitTimer: 0
+  CountdownTimerScript: {fileID: 1905751329}
+  ComputerPoint: 0
+  PlayerPoint: 0
+  ComputerWalkLeftBool: 0
+  ComputerWalkRightBool: 0
+  ComputerAttackBool: 0
+  PlayerWalkLeftBool: 0
+  PlayerWalkRightBool: 0
+  PlayerAttackBool: 0
+  MovementSpeed: 1
+  Power: 1
+  Strength: 1
+  Stamina: 1
+  SpecialSkills: 1
 --- !u!1 &1924417356
 GameObject:
   m_ObjectHideFlags: 0

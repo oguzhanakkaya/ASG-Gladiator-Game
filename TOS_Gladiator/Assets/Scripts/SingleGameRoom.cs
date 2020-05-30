@@ -15,6 +15,7 @@ public class SingleGameRoom : MonoBehaviour
     public Canvas HealthAndEnergyCanvas,PlayerActionButtons;
     public CountdownTimer countdowntimer;
     public PlayerMovement playerMovement;
+    public ComputerMovement computerMovement;
     public readonly string SelectedCharacter = "Selected Character";
 
     void Start()
@@ -231,6 +232,10 @@ public class SingleGameRoom : MonoBehaviour
     public void SetTurnControlToComputer()
     {
             TurnControl = 2;     
+    }
+    public void SetTurnControlToPlayer()
+    {
+        TurnControl = 1;
     }
     public void GameFinished()
     {
