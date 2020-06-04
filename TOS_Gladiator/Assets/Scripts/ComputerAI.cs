@@ -73,15 +73,15 @@ public class ComputerAI : MonoBehaviour
         if (ComputerMovement.ComputerAttackBool == true)
         {
             QuickAttack.ActionPoint = (PlayerMovement.ComputerHealth / PlayerMovement.PlayerHealth)
-                + (QuickAttack.Miss + QuickAttack.AttackPower + (PlayerMovement.ComputerEnergy / PlayerMovement.PlayerEnergy));
+                + (QuickAttack.Miss / QuickAttack.AttackPower + (PlayerMovement.ComputerEnergy / PlayerMovement.PlayerEnergy));
             ActionsArray[2] = QuickAttack.ActionPoint;
 
            NormalAttack.ActionPoint = (PlayerMovement.ComputerHealth / PlayerMovement.PlayerHealth)
-                + (NormalAttack.Miss + NormalAttack.AttackPower + (PlayerMovement.ComputerEnergy / PlayerMovement.PlayerEnergy));
+                + (NormalAttack.Miss / NormalAttack.AttackPower + (PlayerMovement.ComputerEnergy / PlayerMovement.PlayerEnergy));
             ActionsArray[3] = NormalAttack.ActionPoint;
 
            HardAttack.ActionPoint = (PlayerMovement.ComputerHealth / PlayerMovement.PlayerHealth)
-                + (HardAttack.Miss + HardAttack.AttackPower + (PlayerMovement.ComputerEnergy / PlayerMovement.PlayerEnergy));
+                + (HardAttack.Miss / HardAttack.AttackPower + (PlayerMovement.ComputerEnergy / PlayerMovement.PlayerEnergy));
             ActionsArray[4] = HardAttack.ActionPoint;
         }
         else
@@ -166,7 +166,7 @@ public class ComputerAI : MonoBehaviour
 
         HardAttack.ActionName = "HardAttack";
         HardAttack.AttackPower = 12.5f;
-        HardAttack.Miss = 0.45f;
+        HardAttack.Miss = 0.55f;
         HardAttack.SpendEnergy = 5f;
 
 

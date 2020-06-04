@@ -94,9 +94,10 @@ public class PlayerMovement : MonoBehaviour
             animation_player.Play("attack1");
             animation_computer.Play("defans");
             animation_computer.speed = +1.0f;
+            PlayerEnergy -= 10;
 
-           // ShowMissImage();
-    
+            // ShowMissImage();
+
         }
         else
         {
@@ -134,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
             animation_player.Play("attack2");
             animation_computer.Play("defans");
             animation_computer.speed = +1.0f;
+            PlayerEnergy -= 20;
 
             // ShowMissImage();
         }
@@ -175,8 +177,9 @@ public class PlayerMovement : MonoBehaviour
             animation_player.Play("attack3");
              animation_computer.Play("defans");
             animation_computer.speed = +1.0f;
+            PlayerEnergy -= 30;
 
-               // ShowMissImage();
+            // ShowMissImage();
         }
         else
         {

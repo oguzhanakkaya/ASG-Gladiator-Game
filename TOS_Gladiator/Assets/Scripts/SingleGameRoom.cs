@@ -77,26 +77,19 @@ public class SingleGameRoom : MonoBehaviour
                  CameraTimer += Time.deltaTime;
              }           
              if (CameraTimer >= 5f)
-             {
-                /*   TurnControl = 1;
-                   WaitBool = true;*/
+             {            
                 ComputerAI.GetMoves();
                 ComputerAI.CalculateMovesPoint();
                 ComputerAI.SelectNextMove();
-
-
-            }
+             }
            
             
         }
         else if (TurnControl == 3) // GameOver
         {
             CameraNormal();
-           
-
 
         }
-
     }
     public void SetButton()
     {
@@ -158,16 +151,22 @@ public class SingleGameRoom : MonoBehaviour
         
         if(Mathf.Abs(player.transform.position.x - computer.transform.position.x)<=11f)
         {
-            if (Mathf.Abs(player.transform.position.x - computer.transform.position.x)>=4f)
+            if (Mathf.Abs(player.transform.position.x - computer.transform.position.x) >= 6f)
             {
-                camera_x = (player.transform.position.x + computer.transform.position.x) / 2.0f;
-                Main_Camera.transform.position = new Vector3(camera_x, -camera_x + 1, -10.0f);
+                camera_x = Mathf.Abs(player.transform.position.x + computer.transform.position.x) / 2.0f;
+                Main_Camera.transform.position = new Vector3(camera_x, -6, -10.0f);
+                Main_Camera.orthographicSize = Mathf.Abs(player.transform.position.x - computer.transform.position.x) * 8 / 18 + 1;
+            }
+            else if (Mathf.Abs(player.transform.position.x - computer.transform.position.x)>=4f)
+            {
+                camera_x = Mathf.Abs(player.transform.position.x + computer.transform.position.x) / 2.0f;
+                Main_Camera.transform.position = new Vector3(camera_x, -5, -10.0f);
                 Main_Camera.orthographicSize = Mathf.Abs(player.transform.position.x - computer.transform.position.x) * 8 / 18 + 1;
             }
             else
             {
-                camera_x = (player.transform.position.x + computer.transform.position.x) / 2.0f;
-                Main_Camera.transform.position = new Vector3(camera_x, -camera_x + 3, -10.0f);
+                camera_x = Mathf.Abs(player.transform.position.x + computer.transform.position.x) / 2.0f;
+                Main_Camera.transform.position = new Vector3(camera_x, -5, -10.0f);
                 Main_Camera.orthographicSize =3f;
             }
             
@@ -175,7 +174,7 @@ public class SingleGameRoom : MonoBehaviour
         else
         {
             camera_x = (player.transform.position.x + computer.transform.position.x) / 2.0f;
-            Main_Camera.transform.position = new Vector3(camera_x, -camera_x, -10.0f);
+            Main_Camera.transform.position = new Vector3(camera_x, -3, -10.0f);
             Main_Camera.orthographicSize = Mathf.Abs(player.transform.position.x - computer.transform.position.x) * 8 / 18;
         }
          
