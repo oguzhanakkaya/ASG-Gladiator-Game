@@ -1387,7 +1387,7 @@ RectTransform:
   m_GameObject: {fileID: 553349142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0}
   m_Children:
   - {fileID: 1689667045}
   m_Father: {fileID: 2060185021}
@@ -3152,6 +3152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   computer: {fileID: 567554343}
+  MissShieldObject: {fileID: 0}
+  MissShieldImage: {fileID: 0}
+  HitImage: {fileID: 0}
   HitCanvas: {fileID: 0}
   animation_player: {fileID: 0}
   animation_computer: {fileID: 0}

@@ -55,7 +55,7 @@ public class SingleGameRoom : MonoBehaviour
     {
         playerMovement.SetTransforms();
         RotationCheck();
-        playerMovement.CheckDied();
+       // playerMovement.CheckDied();
 
         if (TurnControl==1) // Turn for Player
         {
@@ -72,11 +72,11 @@ public class SingleGameRoom : MonoBehaviour
         else if(TurnControl==2) // Turn for Computer
         {      
             CameraNormal();
-             if(CameraTimer < 5f)
+             if(CameraTimer < 3f)
              {
                  CameraTimer += Time.deltaTime;
              }           
-             if (CameraTimer >= 5f)
+             if (CameraTimer >= 3f)
              {            
                 ComputerAI.GetMoves();
                 ComputerAI.CalculateMovesPoint();

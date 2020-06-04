@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject computer; //MissShieldObject,MissShieldImage,HitImage;
+    public GameObject computer,MissShieldObject,MissShieldImage,HitImage;
     public Canvas HitCanvas;
     public Animator animation_player, animation_computer;
     public Text player_text, computer_text,HitText;   
@@ -30,18 +30,18 @@ public class PlayerMovement : MonoBehaviour
 
         SetSkillPointsToCharacter();
 
-        //MissShieldImage=GameObject.Find("MissShield");
-      /*  HitImage = GameObject.Find("HitImage");
+        MissShieldImage=GameObject.Find("MissShield");
+        HitImage = GameObject.Find("HitImage");
         HitText=GameObject.Find("HitImageText").GetComponent<Text>();
-        HitCanvas= GameObject.Find("HitCanvas").GetComponent<Canvas>();*/
+        HitCanvas= GameObject.Find("HitCanvas").GetComponent<Canvas>();
 
-     //   HitImage.SetActive(false);
+        HitImage.SetActive(false);
 
     }
 
     void Update()
     {
-        //HideImage();
+        HideImage();
     }
     public void SetTransforms()
     {
@@ -96,7 +96,8 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.speed = +1.0f;
             PlayerEnergy -= 10;
 
-            // ShowMissImage();
+             
+            ShowMissImage();
 
         }
         else
@@ -111,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerEnergy -= 10;
             Debug.Log(hit);
             ComputerHealth -= hit;
-            //  ShowHitImage();
+            ShowHitImage();
         }
 
       
@@ -137,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.speed = +1.0f;
             PlayerEnergy -= 20;
 
-            // ShowMissImage();
+             ShowMissImage();
         }
         else
         {
@@ -152,7 +153,8 @@ public class PlayerMovement : MonoBehaviour
             int hit = Random.Range(5, 10) * Power;
             PlayerEnergy -= 20;
             ComputerHealth -= hit;
-            //  ShowHitImage();
+
+            ShowHitImage();
 
         }
 
@@ -179,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.speed = +1.0f;
             PlayerEnergy -= 30;
 
-            // ShowMissImage();
+             ShowMissImage();
         }
         else
         {
@@ -192,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
             int hit = Random.Range(10,15) * Power;
             PlayerEnergy -= 30;
             ComputerHealth -= hit;
-            //  ShowHitImage();
+            ShowHitImage();
 
         }
 
@@ -240,24 +242,25 @@ public class PlayerMovement : MonoBehaviour
         Stamina = PlayerPrefs.GetInt(StaminaString, 0);
         SpecialSkills = PlayerPrefs.GetInt(SpecialSkillsString, 0);
     }
-  /*  public void ShowMissImage()
-    {       
-        MissShieldObject= Instantiate(MissShieldImage, new Vector3(9, -4f, 0), Quaternion.identity) as GameObject;
-        MissShieldObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+   public void ShowMissImage()
+    {
         MissShieldObject.transform.SetParent(computer.transform);
+        MissShieldObject = Instantiate(MissShieldImage, new Vector3(computer.transform.position.x, -4f, 0), Quaternion.identity) as GameObject;
+        MissShieldObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         
-        Destroy(MissShieldObject,1.0f);
- 
+       
+        Destroy(MissShieldObject, 1.0f);
     }
     public void ShowHitImage()
     {
+        HitCanvas.transform.SetParent(gameRoom.computer.transform);
         HitImage.SetActive(true);
-        HitImage.transform.position = new Vector3(9, -4.5f, 0);
+        HitImage.transform.position = new Vector3(computer.transform.position.x, -4, 0);
 
         HitText.text = "aa";  
 
-    }*/
-  /*  public void HideImage()
+    }
+    public void HideImage()
     {
         if (HitImage.activeSelf == true)
         {
@@ -268,8 +271,8 @@ public class PlayerMovement : MonoBehaviour
                 HitTimer = 0;
             }
         }
-    }*/
-    public void CheckDied()
+    }
+  /*  public void CheckDied()
     {
         if(ComputerHealth <= 0)
         {        
@@ -288,7 +291,7 @@ public class PlayerMovement : MonoBehaviour
             gameRoom.GameFinished();
         }
     }
-    
+    */
 }
 
   

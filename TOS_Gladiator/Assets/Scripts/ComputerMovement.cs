@@ -32,7 +32,7 @@ public class ComputerMovement : MonoBehaviour
         MissShieldImage = GameObject.Find("MissShield");
         HitImage = GameObject.Find("HitImage");
         HitText = GameObject.Find("HitImageText").GetComponent<Text>();
-        HitCanvas = GameObject.Find("HitCanvas").GetComponent<Canvas>();
+       HitCanvas = GameObject.Find("HitCanvas").GetComponent<Canvas>();
 
         HitImage.SetActive(false);
 
@@ -43,7 +43,7 @@ public class ComputerMovement : MonoBehaviour
 
     void Update()
     {
-        HideImage();
+        playerMovement.HideImage();
     }
     public void SetTransforms()
     {
@@ -222,34 +222,24 @@ public class ComputerMovement : MonoBehaviour
     }
     public void ShowMissImage()
     {
-        MissShieldObject = Instantiate(MissShieldImage, new Vector3 (gameRoommm.player.transform.position.x, gameRoommm.player.transform.position.y+1, gameRoommm.player.transform.position.z), 
+        MissShieldObject = Instantiate(MissShieldImage, new Vector3 (gameRoommm.player.transform.position.x, -4f, 0), 
         Quaternion.identity) as GameObject;
         MissShieldObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         MissShieldObject.transform.SetParent(gameRoommm.player.transform);
 
-        Destroy(MissShieldObject, 1.0f);
+      
+            Destroy(MissShieldObject, 1.0f);
+        
 
     }
     public void ShowHitImage()
     {
         HitCanvas.transform.SetParent(gameRoommm.player.transform);
         HitImage.SetActive(true);
-        HitImage.transform.position = new Vector3(9, -4.5f, 0);
+        HitImage.transform.position = new Vector3(gameRoommm.player.transform.position.x, -4f, 0);
 
         HitText.text = "aa";
 
-    }
-    public void HideImage()
-    {
-        if (HitImage.activeSelf == true)
-        {
-            HitTimer += Time.deltaTime;
-            if (HitTimer >= 2)
-            {
-                HitImage.SetActive(false);
-                HitTimer = 0;
-            }
-        }
     }
     public void ComputerActionCheck()
     {
