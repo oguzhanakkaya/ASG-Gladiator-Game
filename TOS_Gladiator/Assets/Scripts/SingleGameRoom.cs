@@ -16,6 +16,7 @@ public class SingleGameRoom : MonoBehaviour
     public CountdownTimer countdowntimer;
     public PlayerMovement playerMovement;
     public ComputerMovement computerMovement;
+    public ComputerAI ComputerAI;
     public readonly string SelectedCharacter = "Selected Character";
 
     void Start()
@@ -71,31 +72,28 @@ public class SingleGameRoom : MonoBehaviour
         else if(TurnControl==2) // Turn for Computer
         {      
             CameraNormal();
-            if(CameraTimer < 4f)
-            {
-                CameraTimer += Time.deltaTime;
-            }           
-            if (CameraTimer >= 4f)
-            {
-                TurnControl = 1;
-                WaitBool = true;
-               
-            }
-            
-        }
-        else if (TurnControl == 3) // Turn for Computer
-        {
-            CameraNormal();
-            if (CameraTimer < 4f)
-            {
-                CameraTimer += Time.deltaTime;
-            }
-            if (CameraTimer >= 4f)
-            {
-                TurnControl = 1;
-                WaitBool = true;
+             if(CameraTimer < 5f)
+             {
+                 CameraTimer += Time.deltaTime;
+             }           
+             if (CameraTimer >= 5f)
+             {
+                /*   TurnControl = 1;
+                   WaitBool = true;*/
+                ComputerAI.GetMoves();
+                ComputerAI.CalculateMovesPoint();
+                ComputerAI.SelectNextMove();
+
 
             }
+           
+            
+        }
+        else if (TurnControl == 3) // GameOver
+        {
+            CameraNormal();
+           
+
 
         }
 

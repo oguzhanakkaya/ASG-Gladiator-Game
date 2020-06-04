@@ -49,14 +49,14 @@ public class PlayerMovement : MonoBehaviour
     }
     public void WalkLeft()
     {
-        Debug.Log("walkback");
+       
 
         animation_player.speed = +2.0f;
         animation_player.Play("walkBack");
 
         gameRoom.player.transform.position -= new Vector3(1.0f, 0.0f, 0.0f) * MovementSpeed;
 
-        PlayerEnergy -= 10;
+        PlayerEnergy -= 5;
         player_text.text = "Health:" + (PlayerHealth) + "\n\nEnergy:" + PlayerEnergy;
 
         gameRoom.SetTurnControlToComputer();
@@ -66,14 +66,12 @@ public class PlayerMovement : MonoBehaviour
     }
     public void WalkRight()
     {
-        Debug.Log("walkforw");
-
         animation_player.speed = +2.0f;
         animation_player.Play("walkForw");
 
         gameRoom.player.transform.position += new Vector3(1.0f, 0.0f, 0.0f) * MovementSpeed;
 
-        PlayerEnergy -= 10;
+        PlayerEnergy -= 5;
         player_text.text = "Health:" + (PlayerHealth) + "\n\nEnergy:" + PlayerEnergy;
 
         gameRoom.SetTurnControlToComputer();
@@ -83,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void QuickAttack()
     {
-        Debug.Log("ataack1");
+      
 
         miss = Random.Range(0, 100);
 
@@ -124,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void NormalAttack()
     {
-        Debug.Log("attack2");
+     
 
         miss = Random.Range(0, 100);
 
@@ -150,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.speed = +1.0f;
 
             int hit = Random.Range(5, 10) * Power;
-            PlayerEnergy -= 10;
+            PlayerEnergy -= 20;
             ComputerHealth -= hit;
             //  ShowHitImage();
 
@@ -166,8 +164,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void HardAttack()
     {
-        Debug.Log("attack3");
-
+      
         miss = Random.Range(0, 100);
 
         if (miss <= 45)
@@ -190,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.speed = +1.0f;
 
             int hit = Random.Range(10,15) * Power;
-            PlayerEnergy -= 10;
+            PlayerEnergy -= 30;
             ComputerHealth -= hit;
             //  ShowHitImage();
 
@@ -209,8 +206,14 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("sleep");
 
+        PlayerEnergy += 50;
+        player_text.text = "Health:" + PlayerHealth + "\n\nEnergy:" + PlayerEnergy;
+        computer_text.text = "Health:" + ComputerHealth + "\n\nEnergy:" + ComputerEnergy;
+
         gameRoom.SetTurnControlToComputer();
         CountdownTimerScript.CountdownAudio.Stop();
+
+
     }
     public void PrintTextbox()
     {

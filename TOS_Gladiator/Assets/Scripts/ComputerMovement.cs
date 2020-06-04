@@ -17,19 +17,8 @@ public class ComputerMovement : MonoBehaviour
     public float HitTimer;
     public CountdownTimer CountdownTimerScript;
     public int ComputerPoint, PlayerPoint;
-
-
-
-    [System.Serializable]
-    struct Actions
-    {
-        public float GivenHit;
-        public float LostEnergy;
-        public float Miss;
-
-    }
-   
-    public bool ComputerWalkLeftBool, ComputerWalkRightBool, ComputerAttackBool, PlayerWalkLeftBool, PlayerWalkRightBool, PlayerAttackBool;
+ 
+    public bool ComputerWalkLeftBool, ComputerWalkRightBool, ComputerAttackBool,ComputerSleepBool;
 
     public int MovementSpeed, Power, Strength, Stamina, SpecialSkills;
     void Start()
@@ -67,10 +56,11 @@ public class ComputerMovement : MonoBehaviour
         playerMovement.animation_computer.speed = +2.0f;
         playerMovement.animation_computer.Play("walkBack");
 
-        gameRoommm.player.transform.position -= new Vector3(1.0f, 0.0f, 0.0f);  //* MovementSpeed;
+        computer.transform.position -= new Vector3(1.0f, 0.0f, 0.0f);  //* MovementSpeed;
 
-        playerMovement.ComputerEnergy -= 10;
+        playerMovement.ComputerEnergy -= 5;
         computer_text.text = "Health:" + (playerMovement.ComputerHealth) + "\n\nEnergy:" + playerMovement.ComputerEnergy;
+
 
         gameRoommm.SetTurnControlToPlayer();
 
@@ -84,9 +74,9 @@ public class ComputerMovement : MonoBehaviour
         playerMovement.animation_computer.speed = +2.0f;
         playerMovement.animation_computer.Play("walkForw");
 
-        gameRoommm.player.transform.position -= new Vector3(1.0f, 0.0f, 0.0f);  //* MovementSpeed;
+        computer.transform.position -= new Vector3(1.0f, 0.0f, 0.0f);  //* MovementSpeed;
 
-        playerMovement.ComputerEnergy -= 10;
+        playerMovement.ComputerEnergy -= 5;
         computer_text.text = "Health:" + (playerMovement.ComputerHealth) + "\n\nEnergy:" + playerMovement.ComputerEnergy;
 
         gameRoommm.SetTurnControlToPlayer();
@@ -160,7 +150,7 @@ public class ComputerMovement : MonoBehaviour
             playerMovement.animation_computer.speed = +1.0f;
 
             int hit = Random.Range(5, 10) * Power;
-            playerMovement.ComputerEnergy -= 10;
+            playerMovement.ComputerEnergy -= 20;
             playerMovement.PlayerHealth -= hit;
             ShowHitImage();
 
@@ -198,7 +188,7 @@ public class ComputerMovement : MonoBehaviour
             playerMovement.animation_player.speed = +1.0f;
 
             int hit = Random.Range(10, 15) * Power;
-            playerMovement.ComputerEnergy -= 10;
+            playerMovement.ComputerEnergy -= 30;
             playerMovement.PlayerHealth -= hit;
             ShowHitImage();
 
@@ -217,8 +207,15 @@ public class ComputerMovement : MonoBehaviour
     {
         Debug.Log("sleep");
 
-        gameRoommm.SetTurnControlToComputer();
+       
+        playerMovement.ComputerEnergy += 50;
+
+        player_text.text = "Health:" + playerMovement.PlayerHealth + "\n\nEnergy:" + playerMovement.PlayerEnergy;
+        computer_text.text = "Health:" + playerMovement.ComputerHealth + "\n\nEnergy:" + playerMovement.ComputerEnergy;
+
+        gameRoommm.SetTurnControlToPlayer();
         CountdownTimerScript.CountdownAudio.Stop();
+
     }
     public void ShowMissImage()
     {
@@ -257,70 +254,38 @@ public class ComputerMovement : MonoBehaviour
         {
             ComputerWalkLeftBool = true;
         }
+        else
+        {
+            ComputerWalkLeftBool = false;
+        }
+
         if(computer.transform.position.x + 1.0f <= 14f)
         {
             ComputerWalkRightBool = true;
         }
+        else
+        {
+            ComputerWalkRightBool = false;
+        }
+
         if (Mathf.Abs(gameRoommm.player.transform.position.x - computer.transform.position.x) < 3.0f)
         {
             ComputerAttackBool = true;
         }
-    }
-    public void PlayerActionCheck()
-    {
-       
-        if (gameRoommm.player.transform.position.x - 1.0f*playerMovement.MovementSpeed >= -14f)
+        else
         {
-            PlayerWalkLeftBool = true;
+            ComputerAttackBool = false;
         }
-        if (computer.transform.position.x + 1.0f * playerMovement.MovementSpeed <= 14f)
+
+        if (playerMovement.ComputerEnergy < 50f)
         {
-            PlayerWalkRightBool = true;
+            ComputerSleepBool = true;
         }
-        if (Mathf.Abs(gameRoommm.player.transform.position.x - computer.transform.position.x) < 3.0f)
+        else
         {
-            PlayerAttackBool = true;
+            ComputerSleepBool = false;
         }
     }
-    public void SetActionsFeature()
-    {
-        Actions WalkRightPoint;
-        WalkRightPoint.GivenHit = 1;
-        WalkRightPoint.LostEnergy = 10;
-        WalkRightPoint.Miss = 1;
-
-
-        Actions WalkLeftPoint;
-        WalkLeftPoint.GivenHit = 1;
-        WalkLeftPoint.LostEnergy = 10;
-        WalkLeftPoint.Miss = 1;
-
-
-        Actions QuickAttackPoint;
-        QuickAttackPoint.GivenHit = 2.5f * (float)Power;
-        QuickAttackPoint.LostEnergy = 10;
-        QuickAttackPoint.Miss = 0.2f;
-
-
-        Actions NormalAttackPoint;
-        NormalAttackPoint.GivenHit = 7.5f * (float)Power;
-        NormalAttackPoint.LostEnergy = 10;
-        NormalAttackPoint.Miss = 0.05f;
-
-
-        Actions HardAttackPoint;
-        HardAttackPoint.GivenHit = 12.5f * (float)Power;
-        HardAttackPoint.LostEnergy = 10;
-        HardAttackPoint.Miss = 0.022f;
-
-       // Actions SleepPoint;
-
-
-    }
-    public void CalculateGamePoint()
-    {
-        
-    }
-
+ 
 
 }

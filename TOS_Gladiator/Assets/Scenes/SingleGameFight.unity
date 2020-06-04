@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.98384315, b: 0.48584908, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3037,6 +3037,7 @@ GameObject:
   - component: {fileID: 1905751331}
   - component: {fileID: 1905751328}
   - component: {fileID: 1905751329}
+  - component: {fileID: 1905751332}
   m_Layer: 0
   m_Name: SetScripts
   m_TagString: Untagged
@@ -3085,6 +3086,7 @@ MonoBehaviour:
   countdowntimer: {fileID: 1905751329}
   playerMovement: {fileID: 1905751330}
   computerMovement: {fileID: 1905751331}
+  ComputerAI: {fileID: 1905751332}
 --- !u!4 &1905751327
 Transform:
   m_ObjectHideFlags: 0
@@ -3210,14 +3212,33 @@ MonoBehaviour:
   ComputerWalkLeftBool: 0
   ComputerWalkRightBool: 0
   ComputerAttackBool: 0
-  PlayerWalkLeftBool: 0
-  PlayerWalkRightBool: 0
-  PlayerAttackBool: 0
+  ComputerSleepBool: 0
   MovementSpeed: 1
   Power: 1
   Strength: 1
   Stamina: 1
   SpecialSkills: 1
+--- !u!114 &1905751332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905751325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22cd404840a34c4d881e26cecb7b6a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComputerMovement: {fileID: 1905751331}
+  PlayerMovement: {fileID: 1905751330}
+  gameRoom: {fileID: 1905751326}
+  ActionsArray:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!1 &1924417356
 GameObject:
   m_ObjectHideFlags: 0

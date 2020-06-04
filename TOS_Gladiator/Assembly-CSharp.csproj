@@ -124,8 +124,8 @@
      <Compile Include="Assets\PhotonChatApi\ChatState.cs" />
      <Compile Include="Assets\PhotonChatApi\ChatUserStatus.cs" />
      <Compile Include="Assets\PhotonChatApi\IChatClientListener.cs" />
+     <Compile Include="Assets\Scripts\ComputerAI.cs" />
      <Compile Include="Assets\Scripts\ComputerMovement.cs" />
-     <Compile Include="Assets\Scripts\ComputerMovementTree.cs" />
      <Compile Include="Assets\Scripts\CountdownTimer.cs" />
      <Compile Include="Assets\Scripts\multi_lobiye.cs" />
      <Compile Include="Assets\Scripts\Page_Load.cs" />
