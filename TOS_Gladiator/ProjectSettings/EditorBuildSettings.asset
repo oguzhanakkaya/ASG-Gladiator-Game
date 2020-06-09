@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 669d3744b5dc385438e065663b0b2175
   - enabled: 1
+    path: Assets/Scenes/MultiOyun.unity
+    guid: ef47fb80b6525084fa464dedf68b6e80
+  - enabled: 1
     path: Assets/Scenes/Multi.unity
     guid: d7c493d0ae194f94fb84094a7ab129ef
   - enabled: 1
@@ -17,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SingleGameCharacterSelection.unity
     guid: dc90e41b5259ff44084ad08673bf8152
-  - enabled: 1
-    path: Assets/Scenes/MultiOyun.unity
-    guid: ef47fb80b6525084fa464dedf68b6e80
   - enabled: 1
     path: Assets/Scenes/SingleGameFight.unity
     guid: 8e63dba6510233a4f99b91c0cdf62b3c
