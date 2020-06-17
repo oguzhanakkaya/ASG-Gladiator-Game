@@ -51,7 +51,7 @@ public class ComputerAI : MonoBehaviour
         if (ComputerMovement.ComputerWalkLeftBool == true)
         {
            WalkLeft.ActionPoint = (PlayerMovement.ComputerHealth/PlayerMovement.PlayerHealth) 
-                + (WalkLeft.Miss + WalkLeft.AttackPower + (PlayerMovement.ComputerEnergy/PlayerMovement.PlayerEnergy));
+                * (WalkLeft.Miss * WalkLeft.AttackPower * (100/ PlayerMovement.ComputerEnergy));
             ActionsArray[0] = WalkLeft.ActionPoint;
         }
         else
@@ -62,7 +62,7 @@ public class ComputerAI : MonoBehaviour
         if (ComputerMovement.ComputerWalkRightBool == true)
         {
             WalkRight.ActionPoint = (PlayerMovement.ComputerHealth / PlayerMovement.PlayerHealth)
-                 + (WalkRight.Miss + WalkRight.AttackPower + (PlayerMovement.ComputerEnergy / PlayerMovement.PlayerEnergy));
+                 * (WalkRight.Miss * WalkRight.AttackPower * (100 / PlayerMovement.ComputerEnergy));
             ActionsArray[1] = WalkRight.ActionPoint;
         }
         else
@@ -73,15 +73,15 @@ public class ComputerAI : MonoBehaviour
         if (ComputerMovement.ComputerAttackBool == true)
         {
             QuickAttack.ActionPoint = (PlayerMovement.ComputerHealth / PlayerMovement.PlayerHealth)
-                + (QuickAttack.Miss / QuickAttack.AttackPower + (PlayerMovement.ComputerEnergy / PlayerMovement.PlayerEnergy));
+                * (QuickAttack.Miss / QuickAttack.AttackPower * (100 / PlayerMovement.ComputerEnergy));
             ActionsArray[2] = QuickAttack.ActionPoint;
 
            NormalAttack.ActionPoint = (PlayerMovement.ComputerHealth / PlayerMovement.PlayerHealth)
-                + (NormalAttack.Miss / NormalAttack.AttackPower + (PlayerMovement.ComputerEnergy / PlayerMovement.PlayerEnergy));
+                * (NormalAttack.Miss / NormalAttack.AttackPower * (100 / PlayerMovement.ComputerEnergy));
             ActionsArray[3] = NormalAttack.ActionPoint;
 
            HardAttack.ActionPoint = (PlayerMovement.ComputerHealth / PlayerMovement.PlayerHealth)
-                + (HardAttack.Miss / HardAttack.AttackPower + (PlayerMovement.ComputerEnergy / PlayerMovement.PlayerEnergy));
+                * (HardAttack.Miss / HardAttack.AttackPower * (100 / PlayerMovement.ComputerEnergy));
             ActionsArray[4] = HardAttack.ActionPoint;
         }
         else

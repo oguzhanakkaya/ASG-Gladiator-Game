@@ -31,10 +31,10 @@ public class ComputerMovement : MonoBehaviour
 
         MissShieldImage = GameObject.Find("MissShield");
         HitImage = GameObject.Find("HitImage");
-        HitText = GameObject.Find("HitImageText").GetComponent<Text>();
+       // HitText = GameObject.Find("HitImageText").GetComponent<Text>();
        HitCanvas = GameObject.Find("HitCanvas").GetComponent<Canvas>();
 
-        HitImage.SetActive(false);
+     //   HitImage.SetActive(false);
 
         ComputerWalkLeftBool = false;
         ComputerWalkRightBool = false;

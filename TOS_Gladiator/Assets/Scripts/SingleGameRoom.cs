@@ -11,12 +11,13 @@ public class SingleGameRoom : MonoBehaviour
     public int time,TurnControl;
     public GameObject player, computer;
     public Camera Main_Camera;
-    public Button walkforw, walkBack, attack1, attack2, attack3, sleep,btn,btn1,btn3,btn4,btn5,btn6;   
+    public Button walkforw, walkBack, attack1, attack2, attack3, sleep,btn,btn1,btn3,btn4,btn5,btn6,SpecialSkillButton;   
     public Canvas HealthAndEnergyCanvas,PlayerActionButtons;
     public CountdownTimer countdowntimer;
     public PlayerMovement playerMovement;
     public ComputerMovement computerMovement;
     public ComputerAI ComputerAI;
+    public SpecialSkill specialSkill;
     public readonly string SelectedCharacter = "Selected Character";
 
     void Start()
@@ -71,11 +72,15 @@ public class SingleGameRoom : MonoBehaviour
         }
         else if(TurnControl==2) // Turn for Computer
         {      
-            CameraNormal();
+           
              if(CameraTimer < 3f)
              {
                  CameraTimer += Time.deltaTime;
-             }           
+             }
+             if(CameraTimer>0.10f)
+             {
+                CameraNormal();
+            }
              if (CameraTimer >= 3f)
              {            
                 ComputerAI.GetMoves();
@@ -101,7 +106,8 @@ public class SingleGameRoom : MonoBehaviour
         btn4 = GameObject.Find("attack_2").GetComponent<Button>();
         btn5 = GameObject.Find("attack_3").GetComponent<Button>();
         btn6 = GameObject.Find("sleep").GetComponent<Button>();
-      
+        SpecialSkillButton = GameObject.Find("SpecialSkillsButton").GetComponent<Button>();
+
 
         btn.onClick.AddListener(playerMovement.WalkRight);
         btn1.onClick.AddListener(playerMovement.WalkLeft);
@@ -109,6 +115,7 @@ public class SingleGameRoom : MonoBehaviour
         btn4.onClick.AddListener(playerMovement.NormalAttack);
         btn5.onClick.AddListener(playerMovement.HardAttack);
         btn6.onClick.AddListener(playerMovement.Sleep);
+        SpecialSkillButton.onClick.AddListener(specialSkill.SpecialSkillCanvasDisplay);
     }
     public void CameraZoom()
     {
@@ -140,6 +147,7 @@ public class SingleGameRoom : MonoBehaviour
 
         if((Mathf.Abs(Main_Camera.transform.position.x-player.transform.position.x)<1 ) && (Mathf.Abs(Main_Camera.transform.position.y - player.transform.position.y) < 2))
         {
+           if(!(specialSkill.SpecialSkillCanvas.gameObject.activeSelf==true))
             ButtonActive();
             HealthAndEnergyCanvas.enabled = true;
         }
@@ -174,7 +182,7 @@ public class SingleGameRoom : MonoBehaviour
         else
         {
             camera_x = (player.transform.position.x + computer.transform.position.x) / 2.0f;
-            Main_Camera.transform.position = new Vector3(camera_x, -3, -10.0f);
+            Main_Camera.transform.position = new Vector3(camera_x, -2, -10.0f);
             Main_Camera.orthographicSize = Mathf.Abs(player.transform.position.x - computer.transform.position.x) * 8 / 18;
         }
          
@@ -188,6 +196,8 @@ public class SingleGameRoom : MonoBehaviour
         btn4.gameObject.SetActive(false);
         btn5.gameObject.SetActive(false);
         btn6.gameObject.SetActive(false);
+        SpecialSkillButton.gameObject.SetActive(false);
+        specialSkill.SpecialSkillsCanvasClose();
 
         countdowntimer.DeactiveTimer();
     }
@@ -215,6 +225,7 @@ public class SingleGameRoom : MonoBehaviour
         }
 
         btn6.gameObject.SetActive(true);
+        SpecialSkillButton.gameObject.SetActive(true);
 
 
         ActiveAndCountTimer();

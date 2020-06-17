@@ -65,6 +65,7 @@
      <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
      <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
      <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
+     <Compile Include="Assets\Scripts\BackGroundSelecter.cs" />
      <Compile Include="Assets\Scripts\ComputerAI.cs" />
      <Compile Include="Assets\Scripts\ComputerMovement.cs" />
      <Compile Include="Assets\Scripts\CountdownTimer.cs" />
@@ -80,6 +81,7 @@
      <Compile Include="Assets\Scripts\SingleGameRoom.cs" />
      <Compile Include="Assets\Scripts\SingletonReferences.cs" />
      <Compile Include="Assets\Scripts\SingleUse\InstantiateExample.cs" />
+     <Compile Include="Assets\Scripts\SpecialSkill.cs" />
      <Compile Include="Assets\Scripts\TestConnect.cs" />
      <Compile Include="Assets\Scripts\UI\Rooms\CreateOrJoinRoomCanvas.cs" />
      <Compile Include="Assets\Scripts\UI\Rooms\CreateRoomMenu.cs" />
