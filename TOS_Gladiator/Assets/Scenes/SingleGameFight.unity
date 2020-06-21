@@ -3673,7 +3673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02babada0092bde4fb1803c8a8bd3f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpecialSkillCanvas: {fileID: 0}
+  SpecialSkillCanvas: {fileID: 1791491913}
   gameRoom: {fileID: 1905751326}
 --- !u!114 &1905751334
 MonoBehaviour:
@@ -3919,7 +3919,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.600006, y: -295.9}
+  m_AnchoredPosition: {x: 2.5999756, y: -295.9}
   m_SizeDelta: {x: 671.8, y: -422}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1959046227
