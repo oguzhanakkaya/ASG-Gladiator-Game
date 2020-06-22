@@ -30,10 +30,10 @@ public class PlayerMovement : MonoBehaviour
 
         SetSkillPointsToCharacter();
 
-        MissShieldImage=GameObject.Find("MissShield");
-        HitImage = GameObject.Find("HitImage");
-        HitText=GameObject.Find("HitImageText").GetComponent<Text>();
-        HitCanvas= GameObject.Find("HitCanvas").GetComponent<Canvas>();
+        MissShieldImage=GameObject.Find("MissShieldComputer");
+        HitImage = GameObject.Find("HitImageComputer");
+       // HitText=GameObject.Find("HitImageText").GetComponent<Text>();
+        HitCanvas= GameObject.Find("HitCanvasComputer").GetComponent<Canvas>();
 
         HitImage.SetActive(false);
 
@@ -244,9 +244,10 @@ public class PlayerMovement : MonoBehaviour
     }
    public void ShowMissImage()
     {
-        MissShieldObject.transform.SetParent(computer.transform);
+        
         MissShieldObject = Instantiate(MissShieldImage, new Vector3(computer.transform.position.x, -4f, 0), Quaternion.identity) as GameObject;
-        MissShieldObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        MissShieldObject.transform.SetParent(computer.transform);
+        MissShieldObject.transform.localScale = new Vector3(2f, 2f, 2f);
         
        
         Destroy(MissShieldObject, 1.0f);
@@ -257,7 +258,7 @@ public class PlayerMovement : MonoBehaviour
         HitImage.SetActive(true);
         HitImage.transform.position = new Vector3(computer.transform.position.x, -4, 0);
 
-        HitText.text = "aa";  
+      //  HitText.text = "aa";  
 
     }
     public void HideImage()
@@ -265,7 +266,7 @@ public class PlayerMovement : MonoBehaviour
         if (HitImage.activeSelf == true)
         {
             HitTimer += Time.deltaTime;
-            if (HitTimer >= 2)
+            if (HitTimer >= 1)
             {
                 HitImage.SetActive(false);
                 HitTimer = 0;

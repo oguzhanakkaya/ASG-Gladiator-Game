@@ -21,7 +21,7 @@ public class ComputerAI : MonoBehaviour
     public PlayerMovement PlayerMovement;
     public SingleGameRoom gameRoom;
 
-    public float[] ActionsArray = new float[5];
+    public float[] ActionsArray = new float[3];
 
 
 
@@ -48,7 +48,7 @@ public class ComputerAI : MonoBehaviour
     }
     public void CalculateMovesPoint()
     {
-        if (ComputerMovement.ComputerWalkLeftBool == true)
+       /* if (ComputerMovement.ComputerWalkLeftBool == true)
         {
            WalkLeft.ActionPoint = (PlayerMovement.ComputerHealth/PlayerMovement.PlayerHealth) 
                 * (WalkLeft.Miss * WalkLeft.AttackPower * (100/ PlayerMovement.ComputerEnergy));
@@ -69,26 +69,26 @@ public class ComputerAI : MonoBehaviour
         {
             ActionsArray[1] = -100;
         }
-
+       */
         if (ComputerMovement.ComputerAttackBool == true)
         {
             QuickAttack.ActionPoint = (PlayerMovement.ComputerHealth / PlayerMovement.PlayerHealth)
                 * (QuickAttack.Miss / QuickAttack.AttackPower * (100 / PlayerMovement.ComputerEnergy));
-            ActionsArray[2] = QuickAttack.ActionPoint;
+            ActionsArray[0] = QuickAttack.ActionPoint;
 
            NormalAttack.ActionPoint = (PlayerMovement.ComputerHealth / PlayerMovement.PlayerHealth)
                 * (NormalAttack.Miss / NormalAttack.AttackPower * (100 / PlayerMovement.ComputerEnergy));
-            ActionsArray[3] = NormalAttack.ActionPoint;
+            ActionsArray[1] = NormalAttack.ActionPoint;
 
            HardAttack.ActionPoint = (PlayerMovement.ComputerHealth / PlayerMovement.PlayerHealth)
                 * (HardAttack.Miss / HardAttack.AttackPower * (100 / PlayerMovement.ComputerEnergy));
-            ActionsArray[4] = HardAttack.ActionPoint;
+            ActionsArray[2] = HardAttack.ActionPoint;
         }
         else
         {
+            ActionsArray[0] = -100;
+            ActionsArray[1] = -100;
             ActionsArray[2] = -100;
-            ActionsArray[3] = -100;
-            ActionsArray[4] = -100;
         }
 
     }
@@ -98,39 +98,40 @@ public class ComputerAI : MonoBehaviour
         {
             ComputerMovement.Sleep();
         }
-        else if ((PlayerMovement.computer.transform.position.x - gameRoom.player.transform.position.x) > 5.0f)
+        else if ((PlayerMovement.computer.transform.position.x - gameRoom.player.transform.position.x) >= 3.0f )
         {
             ComputerMovement.WalkLeft();
         }
-        else if ((PlayerMovement.computer.transform.position.x - gameRoom.player.transform.position.x) < -5.0f)
+        else if ((PlayerMovement.computer.transform.position.x - gameRoom.player.transform.position.x) <= -3.0f)
         {
             ComputerMovement.WalkRight();
         }
         else
         {
-            float maxValue = ActionsArray.Max();
-            int maxIndex = ActionsArray.ToList().IndexOf(maxValue);
+            /* float maxValue = ActionsArray.Max();
+             int maxIndex = ActionsArray.ToList().IndexOf(maxValue);*/
+            float maxIndex = Random.Range(0, 3);
             Debug.Log(maxIndex);
 
             switch (maxIndex)
             {
-                case 0:
+             /*   case 0:
                     ComputerMovement.WalkLeft();
                     break;
 
                 case 1:
                     ComputerMovement.WalkRight();
-                    break;
+                    break;*/
 
-                case 2:
+                case 0:
                     ComputerMovement.QuickAttack();
                     break;
 
-                case 3:
+                case 1:
                     ComputerMovement.NormalAttack();
                     break;
 
-                case 4:
+                case 2:
                     ComputerMovement.HardAttack();
                     break;
 

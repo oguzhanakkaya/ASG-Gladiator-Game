@@ -60,15 +60,20 @@ public class SingleGameRoom : MonoBehaviour
 
         if (TurnControl==1) // Turn for Player
         {
-            CameraTimer = 0;
-            CameraZoom();
-            if (countdowntimer.time == 0)
+            if(CameraTimer<0.45)
             {
-                TurnControl = 2;
-                WaitBool = false;
-               
+                CameraTimer += Time.deltaTime;
             }
-            
+            else if(CameraTimer>=0.45)
+            {
+                CameraZoom();
+                if (countdowntimer.time == 0)
+                {
+                    TurnControl = 2;
+                    WaitBool = false;
+
+                }
+            }    
         }
         else if(TurnControl==2) // Turn for Computer
         {      
@@ -80,12 +85,13 @@ public class SingleGameRoom : MonoBehaviour
              if(CameraTimer>0.10f)
              {
                 CameraNormal();
-            }
+             }
              if (CameraTimer >= 3f)
              {            
                 ComputerAI.GetMoves();
                 ComputerAI.CalculateMovesPoint();
                 ComputerAI.SelectNextMove();
+                CameraTimer = 0;
              }
            
             

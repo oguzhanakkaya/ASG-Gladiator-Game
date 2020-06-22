@@ -29,12 +29,12 @@ public class ComputerMovement : MonoBehaviour
 
 
 
-        MissShieldImage = GameObject.Find("MissShield");
-        HitImage = GameObject.Find("HitImage");
+        MissShieldImage = GameObject.Find("MissShieldPlayer");
+        HitImage = GameObject.Find("HitImagePlayer");
        // HitText = GameObject.Find("HitImageText").GetComponent<Text>();
-       HitCanvas = GameObject.Find("HitCanvas").GetComponent<Canvas>();
+       HitCanvas = GameObject.Find("HitCanvasPlayer").GetComponent<Canvas>();
 
-     //   HitImage.SetActive(false);
+        HitImage.SetActive(false);
 
         ComputerWalkLeftBool = false;
         ComputerWalkRightBool = false;
@@ -43,7 +43,7 @@ public class ComputerMovement : MonoBehaviour
 
     void Update()
     {
-        playerMovement.HideImage();
+        HideImage();
     }
     public void SetTransforms()
     {
@@ -222,13 +222,13 @@ public class ComputerMovement : MonoBehaviour
     }
     public void ShowMissImage()
     {
-        MissShieldObject = Instantiate(MissShieldImage, new Vector3 (gameRoommm.player.transform.position.x, -4f, 0), 
-        Quaternion.identity) as GameObject;
-        MissShieldObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        MissShieldObject = Instantiate(MissShieldImage, new Vector3 (gameRoommm.player.transform.position.x, -4f, 0), Quaternion.identity) as GameObject;
         MissShieldObject.transform.SetParent(gameRoommm.player.transform);
+        MissShieldObject.transform.localScale = new Vector3(2f, 2f, 2f);
+        
 
       
-            Destroy(MissShieldObject, 1.0f);
+        Destroy(MissShieldObject, 1.0f);
         
 
     }
@@ -240,6 +240,18 @@ public class ComputerMovement : MonoBehaviour
 
         HitText.text = "aa";
 
+    }
+    public void HideImage()
+    {
+        if (HitImage.activeSelf == true)
+        {
+            HitTimer += Time.deltaTime;
+            if (HitTimer >= 1)
+            {
+                HitImage.SetActive(false);
+                HitTimer = 0;
+            }
+        }
     }
     public void ComputerActionCheck()
     {
