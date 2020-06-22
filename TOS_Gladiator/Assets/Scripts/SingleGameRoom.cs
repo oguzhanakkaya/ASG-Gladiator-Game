@@ -56,7 +56,7 @@ public class SingleGameRoom : MonoBehaviour
     {
         playerMovement.SetTransforms();
         RotationCheck();
-       // playerMovement.CheckDied();
+        playerMovement.CheckDied();
 
         if (TurnControl==1) // Turn for Player
         {

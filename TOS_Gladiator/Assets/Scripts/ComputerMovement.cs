@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ComputerMovement : MonoBehaviour
 {
-    public GameObject computer, MissShieldObject, MissShieldImage, HitImage,player;
+    public GameObject computer, MissShieldObject, MissShieldImage;
     public Canvas HitCanvas;
   //  public Animator playerMovement.animation_player, playerMovement.animation_computer;
     public Text player_text, computer_text, HitText;
@@ -29,12 +29,8 @@ public class ComputerMovement : MonoBehaviour
 
 
 
-        MissShieldImage = GameObject.Find("MissShieldPlayer");
-        HitImage = GameObject.Find("HitImagePlayer");
-       // HitText = GameObject.Find("HitImageText").GetComponent<Text>();
-       HitCanvas = GameObject.Find("HitCanvasPlayer").GetComponent<Canvas>();
+       MissShieldImage = GameObject.Find("MissShieldPlayer");
 
-        HitImage.SetActive(false);
 
         ComputerWalkLeftBool = false;
         ComputerWalkRightBool = false;
@@ -43,7 +39,7 @@ public class ComputerMovement : MonoBehaviour
 
     void Update()
     {
-        HideImage();
+      
     }
     public void SetTransforms()
     {
@@ -115,7 +111,7 @@ public class ComputerMovement : MonoBehaviour
             int hit = Random.Range(1, 5) * Power;
             playerMovement.ComputerEnergy -= 10;
             playerMovement.PlayerHealth -= hit;
-            ShowHitImage();
+          
         }
 
 
@@ -154,7 +150,7 @@ public class ComputerMovement : MonoBehaviour
             int hit = Random.Range(5, 10) * Power;
             playerMovement.ComputerEnergy -= 20;
             playerMovement.PlayerHealth -= hit;
-            ShowHitImage();
+          
 
         }
 
@@ -193,7 +189,7 @@ public class ComputerMovement : MonoBehaviour
             int hit = Random.Range(10, 15) * Power;
             playerMovement.ComputerEnergy -= 30;
             playerMovement.PlayerHealth -= hit;
-            ShowHitImage();
+          
 
         }
 
@@ -225,33 +221,8 @@ public class ComputerMovement : MonoBehaviour
         MissShieldObject = Instantiate(MissShieldImage, new Vector3 (gameRoommm.player.transform.position.x, -4f, 0), Quaternion.identity) as GameObject;
         MissShieldObject.transform.SetParent(gameRoommm.player.transform);
         MissShieldObject.transform.localScale = new Vector3(2f, 2f, 2f);
-        
 
-      
         Destroy(MissShieldObject, 1.0f);
-        
-
-    }
-    public void ShowHitImage()
-    {
-        HitCanvas.transform.SetParent(gameRoommm.player.transform);
-        HitImage.SetActive(true);
-        HitImage.transform.position = new Vector3(gameRoommm.player.transform.position.x, -4f, 0);
-
-        HitText.text = "aa";
-
-    }
-    public void HideImage()
-    {
-        if (HitImage.activeSelf == true)
-        {
-            HitTimer += Time.deltaTime;
-            if (HitTimer >= 1)
-            {
-                HitImage.SetActive(false);
-                HitTimer = 0;
-            }
-        }
     }
     public void ComputerActionCheck()
     {

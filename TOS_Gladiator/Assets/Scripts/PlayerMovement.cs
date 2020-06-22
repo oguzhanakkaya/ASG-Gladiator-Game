@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject computer,MissShieldObject,MissShieldImage,HitImage;
-    public Canvas HitCanvas;
+    public GameObject computer, MissShieldObject, MissShieldImage;
     public Animator animation_player, animation_computer;
     public Text player_text, computer_text,HitText;   
     public Camera Main_Camera;
@@ -15,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public int PlayerHealth, ComputerHealth, PlayerEnergy, ComputerEnergy, hit, miss;
     public float HitTimer;
     public CountdownTimer CountdownTimerScript;
+
 
 
     public readonly string MovementSpeedString = "Movement Speed";
@@ -31,17 +31,15 @@ public class PlayerMovement : MonoBehaviour
         SetSkillPointsToCharacter();
 
         MissShieldImage=GameObject.Find("MissShieldComputer");
-        HitImage = GameObject.Find("HitImageComputer");
-       // HitText=GameObject.Find("HitImageText").GetComponent<Text>();
-        HitCanvas= GameObject.Find("HitCanvasComputer").GetComponent<Canvas>();
+       
 
-        HitImage.SetActive(false);
-
+ 
+   
     }
 
     void Update()
     {
-        HideImage();
+     
     }
     public void SetTransforms()
     {
@@ -112,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerEnergy -= 10;
             Debug.Log(hit);
             ComputerHealth -= hit;
-            ShowHitImage();
+          
         }
 
       
@@ -154,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerEnergy -= 20;
             ComputerHealth -= hit;
 
-            ShowHitImage();
+           
 
         }
 
@@ -194,15 +192,11 @@ public class PlayerMovement : MonoBehaviour
             int hit = Random.Range(10,15) * Power;
             PlayerEnergy -= 30;
             ComputerHealth -= hit;
-            ShowHitImage();
+           
 
         }
-
-
         player_text.text = "Health:" + PlayerHealth + "\n\nEnergy:" + PlayerEnergy;
         computer_text.text = "Health:" + ComputerHealth + "\n\nEnergy:" + ComputerEnergy;
-
-
 
         gameRoom.SetTurnControlToComputer();
         CountdownTimerScript.CountdownAudio.Stop();
@@ -252,28 +246,7 @@ public class PlayerMovement : MonoBehaviour
        
         Destroy(MissShieldObject, 1.0f);
     }
-    public void ShowHitImage()
-    {
-        HitCanvas.transform.SetParent(gameRoom.computer.transform);
-        HitImage.SetActive(true);
-        HitImage.transform.position = new Vector3(computer.transform.position.x, -4, 0);
-
-      //  HitText.text = "aa";  
-
-    }
-    public void HideImage()
-    {
-        if (HitImage.activeSelf == true)
-        {
-            HitTimer += Time.deltaTime;
-            if (HitTimer >= 1)
-            {
-                HitImage.SetActive(false);
-                HitTimer = 0;
-            }
-        }
-    }
-  /*  public void CheckDied()
+    public void CheckDied()
     {
         if(ComputerHealth <= 0)
         {        
@@ -292,7 +265,9 @@ public class PlayerMovement : MonoBehaviour
             gameRoom.GameFinished();
         }
     }
-    */
+    
+
+
 }
 
   

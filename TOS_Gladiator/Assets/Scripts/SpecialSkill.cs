@@ -12,8 +12,6 @@ public class SpecialSkill : MonoBehaviour
     {
         //SpecialSkillCanvas= GameObject.Find("SpecialSkillCanvas").GetComponent<Canvas>();
         SpecialSkillCanvas.gameObject.SetActive(false);
-        
-
     }
 
    
