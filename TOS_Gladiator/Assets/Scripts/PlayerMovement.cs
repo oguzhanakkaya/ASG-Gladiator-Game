@@ -212,6 +212,8 @@ public class PlayerMovement : MonoBehaviour
         PlayerEnergy += 50;
         player_text.text = "Health:" + PlayerHealth + "\n\nEnergy:" + PlayerEnergy;
         computer_text.text = "Health:" + ComputerHealth + "\n\nEnergy:" + ComputerEnergy;
+        animation_player.speed = +1.0f;
+        animation_player.Play("sleep");
 
         gameRoom.SetTurnControlToComputer();
         CountdownTimerScript.CountdownAudio.Stop();
@@ -257,10 +259,12 @@ public class PlayerMovement : MonoBehaviour
             
             Debug.Log("Comp Died");
             animation_computer.Play("die");
-            animation_computer.speed = +1.0f;
+          //  animation_computer.speed = +1.0f;
+            animation_player.Play("win");
             gameRoom.GameFinished();
             WinLoseText.text = "Player Win";
-           
+            
+            
         }
         if (PlayerHealth <= 0)
         {
@@ -268,6 +272,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Comp Died");
             animation_player.Play("die");
             animation_player.speed = +1.0f;
+            animation_computer.Play("win");
             gameRoom.GameFinished();
             WinLoseText.text = "Computer Win";
 
