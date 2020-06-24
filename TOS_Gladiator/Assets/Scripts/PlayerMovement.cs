@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Realtime;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,13 +8,14 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject computer, MissShieldObject, MissShieldImage;
     public Animator animation_player, animation_computer;
-    public Text player_text, computer_text,HitText;   
+    public Text player_text, computer_text,WinLoseText;   
     public Camera Main_Camera;
     public Transform computer_transform, camera_transform, temp_transform;
     public SingleGameRoom gameRoom;
     public int PlayerHealth, ComputerHealth, PlayerEnergy, ComputerEnergy, hit, miss;
     public float HitTimer;
     public CountdownTimer CountdownTimerScript;
+    public Canvas WinLoseCanvas;
 
 
 
@@ -31,8 +33,10 @@ public class PlayerMovement : MonoBehaviour
         SetSkillPointsToCharacter();
 
         MissShieldImage=GameObject.Find("MissShieldComputer");
-       
+        WinLoseCanvas = GameObject.Find("WinLoseCanvas").GetComponent<Canvas>();
+        WinLoseText = GameObject.Find("WinLoseText").GetComponent<Text>();
 
+        WinLoseCanvas.enabled = false;
  
    
     }
@@ -255,6 +259,8 @@ public class PlayerMovement : MonoBehaviour
             animation_computer.Play("die");
             animation_computer.speed = +1.0f;
             gameRoom.GameFinished();
+            WinLoseText.text = "Player Win";
+           
         }
         if (PlayerHealth <= 0)
         {
@@ -263,6 +269,9 @@ public class PlayerMovement : MonoBehaviour
             animation_player.Play("die");
             animation_player.speed = +1.0f;
             gameRoom.GameFinished();
+            WinLoseText.text = "Computer Win";
+
+
         }
     }
     

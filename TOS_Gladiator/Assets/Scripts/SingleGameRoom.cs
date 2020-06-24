@@ -154,8 +154,11 @@ public class SingleGameRoom : MonoBehaviour
         if((Mathf.Abs(Main_Camera.transform.position.x-player.transform.position.x)<1 ) && (Mathf.Abs(Main_Camera.transform.position.y - player.transform.position.y) < 2))
         {
            if(!(specialSkill.SpecialSkillCanvas.gameObject.activeSelf==true))
-            ButtonActive();
-            HealthAndEnergyCanvas.enabled = true;
+                if(TurnControl==1 || TurnControl==2)
+                {
+                    ButtonActive();
+                    HealthAndEnergyCanvas.enabled = true;
+                }                                
         }
 
     } 
@@ -254,6 +257,9 @@ public class SingleGameRoom : MonoBehaviour
     public void GameFinished()
     {
         TurnControl = 3;
+        ButtonDeactive();
+        HealthAndEnergyCanvas.enabled = false;
+        playerMovement.WinLoseCanvas.enabled = true;
     }
     public void SpawnPlayerCharacter()
     {
