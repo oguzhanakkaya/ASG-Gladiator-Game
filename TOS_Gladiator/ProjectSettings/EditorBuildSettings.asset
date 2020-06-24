@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SingleGamePhysicalSelection.unity
     guid: a2e97383580acb64a9c8a1fd257219f2
+  - enabled: 1
+    path: Assets/Scenes/Rooms.unity
+    guid: 96f85ebb7f0cfb543b4c5ab55f134792
   m_configObjects: {}

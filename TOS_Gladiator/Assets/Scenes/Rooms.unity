@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5240fa50b9dd0bd43b39fac53976b5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playersListingsMenu: {fileID: 0}
+  _playersListingsMenu: {fileID: 1871991209}
   _leaveRoomMenu: {fileID: 1147910457}
 --- !u!1 &628455043
 GameObject:
