@@ -13,9 +13,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform computer_transform, camera_transform, temp_transform;
     public SingleGameRoom gameRoom;
     public int PlayerHealth, ComputerHealth, PlayerEnergy, ComputerEnergy, hit, miss;
-    public float HitTimer;
+    public float HitTimer,AnimationTimer;
     public CountdownTimer CountdownTimerScript;
     public Canvas WinLoseCanvas;
+    public ComputerMovement computerMovement;
 
 
 
@@ -37,6 +38,10 @@ public class PlayerMovement : MonoBehaviour
         WinLoseText = GameObject.Find("WinLoseText").GetComponent<Text>();
 
         WinLoseCanvas.enabled = false;
+
+        AnimationTimer = 0;
+
+        computerMovement.SetAgility();
  
    
     }
@@ -225,8 +230,8 @@ public class PlayerMovement : MonoBehaviour
         PlayerHealth = 50 * PlayerPrefs.GetInt(StrengthString, 0);
         PlayerEnergy = 50 * PlayerPrefs.GetInt(StaminaString, 0);
 
-        ComputerEnergy = 100;
-        ComputerHealth = 100;
+        ComputerEnergy = 100* computerMovement.Stamina;
+        ComputerHealth = 100* computerMovement.Strength;
 
         player_text = GameObject.Find("Player_Text").GetComponent<Text>();
         player_text.text = "Health:" + PlayerHealth + "\n\nEnergy:" + PlayerEnergy;
@@ -255,12 +260,18 @@ public class PlayerMovement : MonoBehaviour
     public void CheckDied()
     {
         if(ComputerHealth <= 0)
-        {        
-            
+        {
+            AnimationTimer += Time.deltaTime;
             Debug.Log("Comp Died");
             animation_computer.Play("die");
-          //  animation_computer.speed = +1.0f;
+            animation_computer.speed = +1.0f;
             animation_player.Play("win");
+
+            if(AnimationTimer>=0.79)
+            {
+               animation_computer.enabled = false;
+            }
+           
             gameRoom.GameFinished();
             WinLoseText.text = "Player Win";
             
@@ -268,11 +279,17 @@ public class PlayerMovement : MonoBehaviour
         }
         if (PlayerHealth <= 0)
         {
-
+            AnimationTimer += Time.deltaTime;
             Debug.Log("Comp Died");
             animation_player.Play("die");
             animation_player.speed = +1.0f;
             animation_computer.Play("win");
+
+            if (AnimationTimer >= 0.79)
+            {
+                animation_player.enabled = false;
+            }
+
             gameRoom.GameFinished();
             WinLoseText.text = "Computer Win";
 

@@ -3765,8 +3765,10 @@ MonoBehaviour:
   hit: 0
   miss: 0
   HitTimer: 0
+  AnimationTimer: 0
   CountdownTimerScript: {fileID: 1905751329}
   WinLoseCanvas: {fileID: 0}
+  computerMovement: {fileID: 1905751331}
   MovementSpeed: 0
   Power: 0
   Strength: 0
