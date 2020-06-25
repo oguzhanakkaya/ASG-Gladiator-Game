@@ -212,29 +212,37 @@ public class SingleGameRoom : MonoBehaviour
     }
     public void ButtonActive()
     {
-        if (player.transform.position.x+playerMovement.MovementSpeed<=14)
+        if(playerMovement.PlayerEnergy<5)
         {
-            btn.gameObject.SetActive(true);
+            btn6.gameObject.SetActive(true);
         }
-        if (player.transform.position.x - playerMovement.MovementSpeed >= -14)
+        else
         {
-            btn1.gameObject.SetActive(true);
-        }
-        if (Mathf.Abs(player.transform.position.x-computer.transform.position.x)<3.0f)
-        {
-            btn3.gameObject.SetActive(true);
-        }
-        if (Mathf.Abs(player.transform.position.x - computer.transform.position.x) < 3.0f)
-        {
-            btn4.gameObject.SetActive(true);
-        }
-        if (Mathf.Abs(player.transform.position.x - computer.transform.position.x) < 3.0f)
-        {
-            btn5.gameObject.SetActive(true);
-        }
+            if (player.transform.position.x + playerMovement.MovementSpeed <= 14 && playerMovement.PlayerEnergy >=5)
+            {
+                btn.gameObject.SetActive(true);
+            }
+            if (player.transform.position.x - playerMovement.MovementSpeed >= -14 && playerMovement.PlayerEnergy >= 5)
+            {
+                btn1.gameObject.SetActive(true);
+            }
+            if (Mathf.Abs(player.transform.position.x - computer.transform.position.x) < 3.0f && playerMovement.PlayerEnergy > 10)
+            {
+                btn3.gameObject.SetActive(true);
+            }
+            if (Mathf.Abs(player.transform.position.x - computer.transform.position.x) < 3.0f && playerMovement.PlayerEnergy > 20)
+            {
+                btn4.gameObject.SetActive(true);
+            }
+            if (Mathf.Abs(player.transform.position.x - computer.transform.position.x) < 3.0f && playerMovement.PlayerEnergy > 30)
+            {
+                btn5.gameObject.SetActive(true);
+                SpecialSkillButton.gameObject.SetActive(true);
+            }
 
-        btn6.gameObject.SetActive(true);
-        SpecialSkillButton.gameObject.SetActive(true);
+            btn6.gameObject.SetActive(true);
+         
+        }
 
 
         ActiveAndCountTimer();

@@ -175,7 +175,7 @@ public class SingleGamePhysicalSelection : MonoBehaviour
     }
     public void SetSkillsPoint()
     {
-        RemainingSkillsPoint = 6;
+        RemainingSkillsPoint = 3;
         MovementSpeed = 1;
         Power = 1;
         Strength = 1;

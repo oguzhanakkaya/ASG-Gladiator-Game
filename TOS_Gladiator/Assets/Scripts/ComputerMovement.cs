@@ -7,7 +7,7 @@ public class ComputerMovement : MonoBehaviour
 {
     public GameObject computer, MissShieldObject, MissShieldImage;
     public Canvas HitCanvas;
-  //  public Animator playerMovement.animation_player, playerMovement.animation_computer;
+    //  public Animator playerMovement.animation_player, playerMovement.animation_computer;
     public Text player_text, computer_text, HitText;
     public Camera Main_Camera;
     public Transform computer_transform, camera_transform, temp_transform;
@@ -17,19 +17,19 @@ public class ComputerMovement : MonoBehaviour
     public float HitTimer;
     public CountdownTimer CountdownTimerScript;
     public int ComputerPoint, PlayerPoint;
- 
-    public bool ComputerWalkLeftBool, ComputerWalkRightBool, ComputerAttackBool,ComputerSleepBool;
+
+    public bool ComputerWalkLeftBool, ComputerWalkRightBool, ComputerAttackBool, ComputerSleepBool;
 
     public int MovementSpeed, Power, Strength, Stamina, SpecialSkills;
     void Start()
     {
-    //    playerMovement.animation_player =gameRoommm.player.GetComponent<Animator>();
-    //    playerMovement.animation_computer = computer.GetComponent<Animator>();
- 
+        //    playerMovement.animation_player =gameRoommm.player.GetComponent<Animator>();
+        //    playerMovement.animation_computer = computer.GetComponent<Animator>();
 
 
+      
 
-       MissShieldImage = GameObject.Find("MissShieldPlayer");
+        MissShieldImage = GameObject.Find("MissShieldPlayer");
 
 
         ComputerWalkLeftBool = false;
@@ -39,7 +39,7 @@ public class ComputerMovement : MonoBehaviour
 
     void Update()
     {
-      
+
     }
     public void SetTransforms()
     {
@@ -52,7 +52,7 @@ public class ComputerMovement : MonoBehaviour
         playerMovement.animation_computer.speed = +2.0f;
         playerMovement.animation_computer.Play("walkBack");
 
-        computer.transform.position -= new Vector3(1.0f, 0.0f, 0.0f);  //* MovementSpeed;
+        computer.transform.position -= new Vector3(1.0f, 0.0f, 0.0f) * MovementSpeed;  //* MovementSpeed;
 
         playerMovement.ComputerEnergy -= 5;
         computer_text.text = "Health:" + (playerMovement.ComputerHealth) + "\n\nEnergy:" + playerMovement.ComputerEnergy;
@@ -70,7 +70,7 @@ public class ComputerMovement : MonoBehaviour
         playerMovement.animation_computer.speed = +2.0f;
         playerMovement.animation_computer.Play("walkForw");
 
-        computer.transform.position -= new Vector3(1.0f, 0.0f, 0.0f);  //* MovementSpeed;
+        computer.transform.position -= new Vector3(1.0f, 0.0f, 0.0f) * MovementSpeed;  //* MovementSpeed;
 
         playerMovement.ComputerEnergy -= 5;
         computer_text.text = "Health:" + (playerMovement.ComputerHealth) + "\n\nEnergy:" + playerMovement.ComputerEnergy;
@@ -111,12 +111,12 @@ public class ComputerMovement : MonoBehaviour
             int hit = Random.Range(1, 5) * Power;
             playerMovement.ComputerEnergy -= 10;
             playerMovement.PlayerHealth -= hit;
-          
+
         }
 
 
         player_text.text = "Health:" + playerMovement.PlayerHealth + "\n\nEnergy:" + playerMovement.PlayerEnergy;
-        computer_text.text = "Health:" +playerMovement.ComputerHealth + "\n\nEnergy:" + playerMovement.ComputerEnergy;
+        computer_text.text = "Health:" + playerMovement.ComputerHealth + "\n\nEnergy:" + playerMovement.ComputerEnergy;
 
         gameRoommm.SetTurnControlToPlayer();
         CountdownTimerScript.CountdownAudio.Stop();
@@ -150,13 +150,13 @@ public class ComputerMovement : MonoBehaviour
             int hit = Random.Range(5, 10) * Power;
             playerMovement.ComputerEnergy -= 20;
             playerMovement.PlayerHealth -= hit;
-          
+
 
         }
 
 
         player_text.text = "Health:" + playerMovement.PlayerHealth + "\n\nEnergy:" + playerMovement.PlayerEnergy;
-        computer_text.text = "Health:" +playerMovement.ComputerHealth + "\n\nEnergy:" + playerMovement.ComputerEnergy;
+        computer_text.text = "Health:" + playerMovement.ComputerHealth + "\n\nEnergy:" + playerMovement.ComputerEnergy;
 
         gameRoommm.SetTurnControlToPlayer();
         CountdownTimerScript.CountdownAudio.Stop();
@@ -189,13 +189,13 @@ public class ComputerMovement : MonoBehaviour
             int hit = Random.Range(10, 15) * Power;
             playerMovement.ComputerEnergy -= 30;
             playerMovement.PlayerHealth -= hit;
-          
+
 
         }
 
 
         player_text.text = "Health:" + playerMovement.PlayerHealth + "\n\nEnergy:" + playerMovement.PlayerEnergy;
-        computer_text.text = "Health:" +playerMovement.ComputerHealth + "\n\nEnergy:" + playerMovement.ComputerEnergy;
+        computer_text.text = "Health:" + playerMovement.ComputerHealth + "\n\nEnergy:" + playerMovement.ComputerEnergy;
 
 
 
@@ -206,7 +206,7 @@ public class ComputerMovement : MonoBehaviour
     {
         Debug.Log("sleep");
 
-       
+
         playerMovement.ComputerEnergy += 50;
 
         player_text.text = "Health:" + playerMovement.PlayerHealth + "\n\nEnergy:" + playerMovement.PlayerEnergy;
@@ -218,7 +218,7 @@ public class ComputerMovement : MonoBehaviour
     }
     public void ShowMissImage()
     {
-        MissShieldObject = Instantiate(MissShieldImage, new Vector3 (gameRoommm.player.transform.position.x, -4f, 0), Quaternion.identity) as GameObject;
+        MissShieldObject = Instantiate(MissShieldImage, new Vector3(gameRoommm.player.transform.position.x, -4f, 0), Quaternion.identity) as GameObject;
         MissShieldObject.transform.SetParent(gameRoommm.player.transform);
         MissShieldObject.transform.localScale = new Vector3(2f, 2f, 2f);
 
@@ -226,7 +226,7 @@ public class ComputerMovement : MonoBehaviour
     }
     public void ComputerActionCheck()
     {
-        if (computer.transform.position.x-1.0f>=-14f)
+        if (computer.transform.position.x - 1.0f >= -14f)
         {
             ComputerWalkLeftBool = true;
         }
@@ -235,7 +235,7 @@ public class ComputerMovement : MonoBehaviour
             ComputerWalkLeftBool = false;
         }
 
-        if(computer.transform.position.x + 1.0f <= 14f)
+        if (computer.transform.position.x + 1.0f <= 14f)
         {
             ComputerWalkRightBool = true;
         }
@@ -262,6 +262,12 @@ public class ComputerMovement : MonoBehaviour
             ComputerSleepBool = false;
         }
     }
- 
-
+    public void SetAgility()
+    {
+        MovementSpeed = Random.Range(1, 3);
+        Power = Random.Range(1, 3);
+        Strength = Random.Range(1, 3);
+        Stamina = Random.Range(1, 3);
+        SpecialSkills = Random.Range(1, 3);
+    }
 }
