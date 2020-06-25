@@ -275,7 +275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3742979021771980839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -2.28, z: 0}
+  m_LocalPosition: {x: 17, y: -2.28, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 3742979021787428987}
@@ -318,7 +318,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 51768ecd9c9dbea45941763709bd9094, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -441,6 +441,12 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: defans
+  - Type: 4
+    SynchronizeType: 0
+    Name: sleep
+  - Type: 4
+    SynchronizeType: 0
+    Name: win
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
