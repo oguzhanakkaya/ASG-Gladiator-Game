@@ -32,7 +32,7 @@ ee1dba1a186ac062d564e9eb73a1c56f PhotonUnityNetworking.Utilities.dll:Photon.Pun.
 3ba023cd67d72cace33969ab863e0fd4 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.PhotonStatsGui
 8ae3331b163cc121825eeed3975d6c4d Assembly-CSharp.dll:.ChatGui
 c5dfbf3100d0c37a8a543b21f75233b0 Assembly-CSharp.dll:.CreateOrJoinRoomCanvas
-aad690be56e4265f5de9f49a27456cf4 Assembly-CSharp.dll:.InstantiateExample
+55d1e7893887bbdecc97243fa6fbe9df Assembly-CSharp.dll:.InstantiateExample
 e7a73f5f78ba6445195ec23b74a1ce2d Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
 2b1d1de79e4d31f1861f586502176c81 PhotonUnityNetworking.dll:Photon.Pun.PhotonAnimatorView
 ee1dba1a186ac062d564e9eb73a1c56f Assembly-CSharp.dll:Photon.Chat.UtilityScripts.TextToggleIsOnTransition
@@ -147,7 +147,7 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 b25c2463ba9144686d18d7707733226b Assembly-CSharp.dll:.NamePickGui
 24f79094aff162c9aa69c31d64d777d3 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.OnClickRpc
 71bb6a6b6c8f052f948db64c7dd3ca4f PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.PunPlayerScores
-636ae82c517d5015f96b1ce79cc68e88 Assembly-CSharp.dll:.PlayerMovement
+447933093e1a40fceabb2a501ea9ea4a Assembly-CSharp.dll:.PlayerMovement
 a3454b83b4f54d4ed521c79635c758ee PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.ConnectAndJoinRandom
 303ad70ce203ad874efe2965d0fbcff9 Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsEventTracker
 7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
@@ -168,7 +168,7 @@ be24cf40e28b0d1790e690f7d30a2551 Assembly-CSharp.dll:.SingleGameRoom
 d13f2ffe25a5cfbdd73eee414685ba26 Assembly-CSharp.dll:.SingleGamePhysicalSelection
 259988b2d867e1586634d64379c5ff81 PhotonUnityNetworking.dll:Photon.Pun.PhotonTransformView
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.LeaveRoomMenu
-71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.TestConnect
+1209ce85112648ab8e1c9ff2513e1a0e Assembly-CSharp.dll:.TestConnect
 83e90ce66a6383fe97e5a9b0a7473fdf Assembly-CSharp.dll:.BackGroundSelecter
 4fdfe530ffd5f502ce72adb104fc64e2 PhotonUnityNetworking.Utilities.dll:Photon.Pun.UtilityScripts.OnClickDestroy
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer

@@ -2559,6 +2559,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c8dd0884caebb488f93b0677af7275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sendrate: 20
+  _serializationrate: 10
 --- !u!4 &1456381763
 Transform:
   m_ObjectHideFlags: 0
