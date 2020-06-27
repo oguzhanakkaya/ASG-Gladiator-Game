@@ -26,11 +26,12 @@ public class InstantiateExample : MonoBehaviourPun
     }
     public void OnClick_WalkRight()
     {
-
-
-        _player.transform.position += new Vector3(0.5f, 0f, 0f);
+       // UpdateAnimationBool(true, "walkForw");
         _animator.speed = _animationspeed;
-         _animator.Play("walkForw");
+        _animator.Play("walkForw");
+        _player.transform.position += new Vector3(0.5f, 0f, 0f);
+       // UpdateAnimationBool(false, "walkForw");
+        
         
 
 
