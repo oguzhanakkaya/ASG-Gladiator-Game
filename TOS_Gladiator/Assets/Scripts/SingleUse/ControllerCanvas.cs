@@ -1,7 +1,4 @@
 ﻿using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 
 public class ControllerCanvas : MonoBehaviourPun
@@ -12,6 +9,7 @@ public class ControllerCanvas : MonoBehaviourPun
 
     private void Awake()
     {
+
         _animator = GetComponent<Animator>();
 
     }

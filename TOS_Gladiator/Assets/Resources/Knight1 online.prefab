@@ -541,7 +541,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 801237136}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClick_WalkLeft
         m_Mode: 1
         m_Arguments:
@@ -666,7 +666,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 801237136}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClick_Attack3
         m_Mode: 1
         m_Arguments:
@@ -791,7 +791,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 801237136}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClick_WalkRight
         m_Mode: 1
         m_Arguments:
@@ -916,7 +916,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 801237136}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClick_Attack1
         m_Mode: 1
         m_Arguments:
@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 801237136}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClick_Attack2
         m_Mode: 1
         m_Arguments:
@@ -1129,19 +1129,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Normal Attack
---- !u!114 &801237136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2464602828493012341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c04e32be5385847a8a4559beb9d22d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animationspeed: 1
 --- !u!1001 &1280637065423945042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1229,12 +1216,6 @@ PrefabInstance:
 --- !u!4 &2464602828493012338 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3742979021771980832, guid: f009436500749e04b898572c327821de,
-    type: 3}
-  m_PrefabInstance: {fileID: 1280637065423945042}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2464602828493012341 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3742979021771980839, guid: f009436500749e04b898572c327821de,
     type: 3}
   m_PrefabInstance: {fileID: 1280637065423945042}
   m_PrefabAsset: {fileID: 0}

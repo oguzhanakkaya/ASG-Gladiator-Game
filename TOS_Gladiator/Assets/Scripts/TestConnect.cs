@@ -6,12 +6,18 @@ using UnityEngine;
 
 public class TestConnect : MonoBehaviourPunCallbacks
 {
+    [SerializeField]
+    private int _sendrate = 20;
+    [SerializeField]
+    private int _serializationrate = 10;
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Connecting to Server...", this);
         //AuthenticationValues authValues = new AuthenticationValues("0")
         //PhotonNetwork.AuthValues = authValues;
+        PhotonNetwork.SendRate = _sendrate;
+        PhotonNetwork.SerializationRate = _serializationrate;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NickName = MasterManager.GameSettings.NickName;
         PhotonNetwork.GameVersion = MasterManager.GameSettings.GameVersion;
