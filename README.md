@@ -10,8 +10,8 @@ Gladiator Game is a  2d turn based strategy game which made with Unity.
  
  
  ## Developers
- [Oğuzhan AKKAYA](https://github.com/oguzhanakkaya) - Developer <br/>
- [Yunus Emre TÜRKMEN](https://github.com/yunusemretrkmen) - Developer <br/>
+ * [Oğuzhan AKKAYA](https://github.com/oguzhanakkaya) - Developer <br/>
+ * [Yunus Emre TÜRKMEN](https://github.com/yunusemretrkmen) - Developer <br/>
  
  ## Arts, Musics
  [OpenGameArts](https://opengameart.org)
