@@ -1,5 +1,5 @@
 # Gladiator Game
- Gladiator Game is a  2d turn based strategy game which made with Unity. 
+Gladiator Game is a  2d turn based strategy game which made with Unity. 
  
  The game has 2 different mode which are Singleplayer and Multiplayer modes. You can select and improve character. <br/> <br/>
  
